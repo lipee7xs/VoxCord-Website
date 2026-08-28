@@ -1,676 +1,1126 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>VoxCord — Comunicação sem limites</title>
+<title>VoxCord — Conecte. Converse. Compartilhe.</title>
 
-  <meta name="description" content="VoxCord — comunicação, chamadas e transmissão em um só lugar.">
+<meta name="description" content="VoxCord é seu espaço para conversar, fazer chamadas e compartilhar momentos.">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: #08090d;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 700px;
+    height: 700px;
+    left: 50%;
+    top: -350px;
+    transform: translateX(-50%);
+    background: rgba(92, 108, 235, .18);
+    filter: blur(130px);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* NAV */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    background: rgba(8, 9, 13, .65);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,.05);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -.8px;
+}
+
+.logo span {
+    color: #7289da;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #8e929d;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-button {
+    text-decoration: none;
+    color: white;
+    background: #5865f2;
+    padding: 10px 18px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    padding: 150px 7% 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1150px;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid rgba(114,137,218,.3);
+    background: rgba(114,137,218,.08);
+    color: #aab7ff;
+    border-radius: 50px;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+.pill-dot {
+    width: 7px;
+    height: 7px;
+    background: #7289da;
+    border-radius: 50%;
+}
+
+.hero h1 {
+    font-size: clamp(52px, 9vw, 100px);
+    line-height: .92;
+    letter-spacing: -6px;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    color: #7289da;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: 30px auto 0;
+    color: #9296a1;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 23px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .25s;
+}
+
+.btn-primary {
+    color: white;
+    background: #5865f2;
+    box-shadow: 0 12px 40px rgba(88,101,242,.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 17px 45px rgba(88,101,242,.35);
+}
+
+.btn-secondary {
+    color: white;
+    background: #15171d;
+    border: 1px solid #292d37;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    border-color: #444a5a;
+}
+
+/* APP MOCKUP */
+
+.mockup {
+    max-width: 1050px;
+    height: 530px;
+    margin: 75px auto 0;
+    border: 1px solid #292d37;
+    border-radius: 18px;
+    background: #101218;
+    overflow: hidden;
+    box-shadow:
+        0 40px 100px rgba(0,0,0,.65),
+        0 0 100px rgba(88,101,242,.08);
+    text-align: left;
+}
+
+.window {
+    height: 43px;
+    background: #181a21;
+    border-bottom: 1px solid #252832;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    gap: 7px;
+}
+
+.window i {
+    width: 10px;
+    height: 10px;
+    background: #40434d;
+    border-radius: 50%;
+}
+
+.app {
+    height: calc(100% - 43px);
+    display: flex;
+}
+
+.servers {
+    width: 70px;
+    background: #0b0d12;
+    padding: 14px;
+    border-right: 1px solid #22252d;
+}
+
+.server {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    background: #5865f2;
+    margin-bottom: 12px;
+}
+
+.server.secondary {
+    background: #20232b;
+}
+
+.server-line {
+    width: 42px;
+    height: 1px;
+    background: #292c35;
+    margin: 14px 0;
+}
+
+.channels {
+    width: 220px;
+    background: #15171d;
+    padding: 20px 14px;
+}
+
+.server-name {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0 7px 22px;
+}
+
+.category {
+    color: #686d78;
+    font-size: 10px;
+    font-weight: 800;
+    margin: 12px 7px 7px;
+    text-transform: uppercase;
+}
+
+.channel {
+    padding: 9px 10px;
+    border-radius: 7px;
+    color: #9296a0;
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.channel.active {
+    background: #242832;
+    color: white;
+}
+
+.channel.voice {
+    color: #7dce9a;
+}
+
+.main-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    height: 57px;
+    border-bottom: 1px solid #252832;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.chat-content {
+    padding: 25px;
+    flex: 1;
+}
+
+.message {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#7289da,#4656bd);
+    flex-shrink: 0;
+}
+
+.message-name {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.message-time {
+    color: #666b77;
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.message-text {
+    color: #9a9ea8;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.stream {
+    width: 310px;
+    height: 175px;
+    margin-top: 12px;
+    border-radius: 10px;
+    background: #191c24;
+    border: 1px solid #2a2e39;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #737884;
+    font-size: 12px;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 120px 7%;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 55px;
+}
+
+.eyebrow {
+    color: #7289da;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: clamp(34px, 5vw, 54px);
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.section-description {
+    color: #858994;
+    line-height: 1.7;
+    margin-top: 17px;
+}
+
+/* FEATURES */
+
+.features {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 16px;
+}
+
+.feature {
+    background: #101218;
+    border: 1px solid #242832;
+    padding: 30px;
+    border-radius: 16px;
+    transition: .25s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    border-color: #3a4050;
+    background: #12151c;
+}
+
+.feature-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1d27;
+    border-radius: 12px;
+    font-size: 20px;
+    margin-bottom: 22px;
+}
+
+.feature h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: #858995;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* SHOWCASE */
+
+.showcase {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.showcase-text .section-title {
+    margin-bottom: 20px;
+}
+
+.check-list {
+    margin-top: 28px;
+    display: grid;
+    gap: 14px;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #b1b4bd;
+    font-size: 14px;
+}
+
+.check span {
+    width: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(114,137,218,.15);
+    color: #8fa1f0;
+    font-size: 12px;
+}
+
+.showcase-card {
+    min-height: 370px;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 50% 25%,rgba(88,101,242,.22),transparent 40%),
+        #11141b;
+    border: 1px solid #292e3a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.call-card {
+    width: 75%;
+    background: #191c24;
+    border: 1px solid #303541;
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 25px 70px rgba(0,0,0,.4);
+}
+
+.call-top {
+    display: flex;
+    justify-content: space-between;
+    color: #7d828d;
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+.people {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.person {
+    height: 110px;
+    border-radius: 10px;
+    background: #242832;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.person-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #7289da;
+}
+
+.call-controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.control {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #292d37;
+}
+
+/* CTA */
+
+.cta {
+    padding-top: 80px;
+    padding-bottom: 130px;
+}
+
+.cta-box {
+    max-width: 950px;
+    margin: auto;
+    text-align: center;
+    padding: 75px 25px;
+    border-radius: 25px;
+    border: 1px solid #2a2f3b;
+    background:
+        radial-gradient(circle at 50% 0%,rgba(88,101,242,.2),transparent 55%),
+        #101219;
+}
+
+.cta-box h2 {
+    font-size: clamp(35px,5vw,55px);
+    letter-spacing: -2px;
+}
+
+.cta-box p {
+    color: #858994;
+    margin: 17px auto 30px;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid #20232b;
+    padding: 35px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #626672;
+    font-size: 12px;
+}
+
+.footer-logo {
+    font-size: 16px;
+    font-weight: 800;
+    color: white;
+}
+
+.footer-logo span {
+    color: #7289da;
+}
+
+/* MOBILE */
+
+@media(max-width:850px) {
+
+    .nav-links {
+        display: none;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #08090d;
-      color: #ffffff;
-      overflow-x: hidden;
-    }
-
-    /* Fundo */
-
-    body::before {
-      content: "";
-      position: fixed;
-      width: 600px;
-      height: 600px;
-      background: rgba(88, 101, 242, 0.15);
-      filter: blur(120px);
-      border-radius: 50%;
-      top: -250px;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* NAVBAR */
 
     nav {
-      width: 100%;
-      padding: 22px 7%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 10;
+        padding: 0 20px;
     }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .logo span {
-      color: #7289da;
-    }
-
-    nav a {
-      color: #aaa;
-      text-decoration: none;
-      margin-left: 28px;
-      font-size: 14px;
-      transition: 0.2s;
-    }
-
-    nav a:hover {
-      color: white;
-    }
-
-    /* HERO */
 
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 20px 80px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    .hero-content {
-      max-width: 850px;
+    .hero h1 {
+        letter-spacing: -4px;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 8px 15px;
-      border: 1px solid rgba(114, 137, 218, 0.4);
-      border-radius: 30px;
-      background: rgba(114, 137, 218, 0.08);
-      color: #9caef5;
-      font-size: 13px;
-      margin-bottom: 25px;
-    }
-
-    h1 {
-      font-size: clamp(48px, 9vw, 90px);
-      line-height: 0.95;
-      letter-spacing: -5px;
-      margin-bottom: 25px;
-    }
-
-    h1 span {
-      color: #7289da;
-    }
-
-    .hero p {
-      max-width: 650px;
-      margin: auto;
-      color: #a5a7ad;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .buttons {
-      margin-top: 35px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 15px 25px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.25s;
-      display: inline-block;
-    }
-
-    .btn-primary {
-      background: #7289da;
-      color: white;
-      box-shadow: 0 10px 35px rgba(114, 137, 218, 0.25);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      background: #8299e8;
-    }
-
-    .btn-secondary {
-      background: #16181f;
-      border: 1px solid #292c36;
-      color: white;
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      border-color: #555b6e;
-    }
-
-    /* APP PREVIEW */
-
-    .preview {
-      width: min(1000px, 90%);
-      height: 430px;
-      margin: 30px auto 0;
-      border-radius: 18px;
-      border: 1px solid #292c36;
-      background: #111319;
-      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
-      overflow: hidden;
-      text-align: left;
-    }
-
-    .window-bar {
-      height: 42px;
-      background: #191b22;
-      display: flex;
-      align-items: center;
-      padding: 0 15px;
-      gap: 7px;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #555;
-    }
-
-    .app {
-      display: flex;
-      height: calc(100% - 42px);
-    }
-
-    .servers {
-      width: 65px;
-      background: #0d0f14;
-      border-right: 1px solid #22252e;
-      padding: 12px;
-    }
-
-    .server {
-      width: 40px;
-      height: 40px;
-      border-radius: 13px;
-      background: #7289da;
-      margin-bottom: 12px;
-    }
-
-    .server.small {
-      background: #272a34;
+    .mockup {
+        height: 420px;
+        margin-top: 50px;
     }
 
     .channels {
-      width: 210px;
-      background: #15171e;
-      padding: 18px;
-    }
-
-    .channel-title {
-      font-size: 11px;
-      color: #777c88;
-      margin-bottom: 15px;
-      font-weight: bold;
-    }
-
-    .channel {
-      padding: 9px;
-      color: #aeb1ba;
-      border-radius: 7px;
-      margin-bottom: 4px;
-    }
-
-    .channel.active {
-      background: #242833;
-      color: white;
-    }
-
-    .chat {
-      flex: 1;
-      padding: 25px;
-      background: #111319;
-    }
-
-    .chat-header {
-      font-weight: bold;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #252832;
-    }
-
-    .message {
-      margin-top: 22px;
-    }
-
-    .avatar {
-      width: 35px;
-      height: 35px;
-      background: #7289da;
-      border-radius: 50%;
-      float: left;
-      margin-right: 12px;
-    }
-
-    .message-name {
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .message-text {
-      color: #a5a8b0;
-      font-size: 13px;
-      margin-top: 5px;
-    }
-
-    /* SECTIONS */
-
-    section {
-      padding: 110px 7%;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 42px;
-      margin-bottom: 15px;
-      letter-spacing: -2px;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      color: #888c96;
-      max-width: 600px;
-      margin: auto auto 50px;
-      line-height: 1.6;
+        width: 170px;
     }
 
     .features {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+        grid-template-columns: 1fr;
     }
 
-    .card {
-      background: #111319;
-      border: 1px solid #242731;
-      padding: 30px;
-      border-radius: 16px;
-      transition: 0.25s;
+    .showcase {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #444b62;
+    section {
+        padding: 90px 20px;
+    }
+}
+
+@media(max-width:550px) {
+
+    .hero h1 {
+        font-size: 55px;
     }
 
-    .icon {
-      font-size: 28px;
-      margin-bottom: 20px;
+    .hero-description {
+        font-size: 15px;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 19px;
+    .nav-button {
+        display: none;
     }
 
-    .card p {
-      color: #898d97;
-      line-height: 1.6;
-      font-size: 14px;
+    .servers {
+        width: 55px;
+        padding: 10px 7px;
     }
 
-    /* DOWNLOAD */
-
-    .download {
-      text-align: center;
+    .server {
+        width: 40px;
+        height: 40px;
     }
 
-    .download-box {
-      max-width: 800px;
-      margin: auto;
-      padding: 60px 25px;
-      border-radius: 22px;
-      background: linear-gradient(
-        145deg,
-        #131722,
-        #0e1015
-      );
-      border: 1px solid #292d39;
+    .channels {
+        display: none;
     }
 
-    .download-box h2 {
-      font-size: 42px;
-      margin-bottom: 15px;
+    .mockup {
+        height: 330px;
+        width: 100%;
     }
 
-    .download-box p {
-      color: #8e929d;
-      margin-bottom: 30px;
+    .stream {
+        width: 220px;
+        height: 125px;
     }
 
-    .version {
-      margin-top: 15px;
-      color: #626773;
-      font-size: 12px;
+    .showcase-card {
+        min-height: 300px;
     }
 
-    /* FOOTER */
+    .call-card {
+        width: 88%;
+    }
 
     footer {
-      border-top: 1px solid #20232b;
-      padding: 35px 7%;
-      text-align: center;
-      color: #666a74;
-      font-size: 13px;
+        flex-direction: column;
+        gap: 12px;
     }
-
-    /* MOBILE */
-
-    @media (max-width: 800px) {
-
-      nav {
-        padding: 20px;
-      }
-
-      nav .links {
-        display: none;
-      }
-
-      .preview {
-        height: 330px;
-      }
-
-      .channels {
-        width: 150px;
-      }
-
-      .servers {
-        width: 55px;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 80px 20px;
-      }
-
-      .section-title {
-        font-size: 34px;
-      }
-
-      .download-box h2 {
-        font-size: 32px;
-      }
-    }
-
-    @media (max-width: 550px) {
-
-      .channels {
-        display: none;
-      }
-
-      .preview {
-        width: 95%;
-      }
-
-      h1 {
-        letter-spacing: -3px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <nav>
-    <div class="logo">Vox<span>Cord</span></div>
+<!-- NAV -->
 
-    <div class="links">
-      <a href="#recursos">Recursos</a>
-      <a href="#download">Download</a>
+<nav>
+
+    <div class="logo">
+        Vox<span>Cord</span>
     </div>
-  </nav>
+
+    <div class="nav-links">
+        <a href="#recursos">Recursos</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#download">Download</a>
+    </div>
+
+    <a href="#download" class="nav-button">
+        Em breve
+    </a>
+
+</nav>
 
 
-  <header class="hero">
+<!-- HERO -->
 
-    <div class="hero-content">
+<header class="hero">
 
-      <div class="badge">
-        ✦ O seu espaço para conversar
-      </div>
+<div class="hero-content">
 
-      <h1>
-        Fale.<br>
-        <span>Conecte.</span>
-      </h1>
+    <div class="pill">
+        <div class="pill-dot"></div>
+        Seu espaço. Suas pessoas.
+    </div>
 
-      <p>
-        VoxCord é um espaço de comunicação criado para aproximar
-        pessoas, conversar por voz e compartilhar momentos juntos.
-      </p>
+    <h1>
+        Conecte.<br>
+        <span>Converse.</span>
+    </h1>
 
-      <div class="buttons">
+    <p class="hero-description">
+        O VoxCord reúne conversas, chamadas de voz,
+        transmissão e comunidades em uma experiência simples,
+        moderna e feita para você.
+    </p>
+
+    <div class="hero-buttons">
 
         <a href="#download" class="btn btn-primary">
-          ↓ Baixar VoxCord
+            ↓ Conhecer o VoxCord
         </a>
 
         <a href="#recursos" class="btn btn-secondary">
-          Conhecer o VoxCord
+            Explorar recursos
         </a>
 
-      </div>
+    </div>
 
-      <div class="preview">
 
-        <div class="window-bar">
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
+    <!-- MOCKUP -->
+
+    <div class="mockup">
+
+        <div class="window">
+            <i></i>
+            <i></i>
+            <i></i>
         </div>
 
         <div class="app">
 
-          <div class="servers">
-            <div class="server"></div>
-            <div class="server small"></div>
-            <div class="server small"></div>
-          </div>
+            <aside class="servers">
 
-          <div class="channels">
+                <div class="server"></div>
 
-            <div class="channel-title">
-              VOXCOR D
-            </div>
+                <div class="server secondary"></div>
+                <div class="server secondary"></div>
 
-            <div class="channel active">
-              # geral
-            </div>
+                <div class="server-line"></div>
 
-            <div class="channel">
-              # conversa
-            </div>
+                <div class="server secondary"></div>
 
-            <div class="channel">
-              🔊 Sala de voz
-            </div>
+            </aside>
 
-          </div>
 
-          <div class="chat">
+            <aside class="channels">
 
-            <div class="chat-header">
-              # geral
-            </div>
+                <div class="server-name">
+                    VoxCord
+                </div>
 
-            <div class="message">
+                <div class="category">
+                    Texto
+                </div>
 
-              <div class="avatar"></div>
+                <div class="channel active">
+                    # geral
+                </div>
 
-              <div class="message-name">
-                VoxCord
-              </div>
+                <div class="channel">
+                    # conversa
+                </div>
 
-              <div class="message-text">
-                Bem-vindo ao VoxCord! 👋
-              </div>
+                <div class="category">
+                    Voz
+                </div>
 
-            </div>
+                <div class="channel voice">
+                    🔊 Sala principal
+                </div>
 
-            <div class="message">
+            </aside>
 
-              <div class="avatar"></div>
 
-              <div class="message-name">
-                Usuário
-              </div>
+            <main class="main-chat">
 
-              <div class="message-text">
-                Finalmente nosso próprio espaço. 🚀
-              </div>
+                <div class="chat-header">
+                    # geral
+                </div>
 
-            </div>
+                <div class="chat-content">
 
-          </div>
+                    <div class="message">
+
+                        <div class="avatar"></div>
+
+                        <div>
+                            <div class="message-name">
+                                VoxCord
+                                <span class="message-time">
+                                    hoje
+                                </span>
+                            </div>
+
+                            <div class="message-text">
+                                Bem-vindo ao seu novo espaço de comunicação. 👋
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="message">
+
+                        <div class="avatar"></div>
+
+                        <div>
+                            <div class="message-name">
+                                Usuário
+                                <span class="message-time">
+                                    agora
+                                </span>
+                            </div>
+
+                            <div class="message-text">
+                                Bora assistir alguma coisa? 🎬
+                            </div>
+
+                            <div class="stream">
+                                ▶  Transmissão
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </main>
 
         </div>
 
-      </div>
+    </div>
+
+</div>
+
+</header>
+
+
+<!-- FEATURES -->
+
+<section id="recursos">
+
+    <div class="section-header">
+
+        <div class="eyebrow">
+            Recursos
+        </div>
+
+        <h2 class="section-title">
+            Tudo o que você precisa.
+        </h2>
+
+        <p class="section-description">
+            Comunicação simples, organizada e feita para
+            ficar perto de quem importa.
+        </p>
 
     </div>
 
-  </header>
-
-
-  <section id="recursos">
-
-    <h2 class="section-title">
-      Tudo em um só lugar.
-    </h2>
-
-    <p class="section-subtitle">
-      Uma experiência simples para conversar, ficar em call,
-      compartilhar conteúdo e aproveitar seu tempo com quem importa.
-    </p>
 
     <div class="features">
 
-      <div class="card">
-        <div class="icon">🎙️</div>
-        <h3>Chamadas de voz</h3>
-        <p>
-          Converse em tempo real com seus amigos através de
-          salas de voz.
-        </p>
-      </div>
+        <div class="feature">
 
-      <div class="card">
-        <div class="icon">📺</div>
-        <h3>Transmissão</h3>
-        <p>
-          Compartilhe sua tela e assista conteúdos junto com
-          outras pessoas.
-        </p>
-      </div>
+            <div class="feature-icon">🎙️</div>
 
-      <div class="card">
-        <div class="icon">💬</div>
-        <h3>Chats</h3>
-        <p>
-          Envie mensagens e mantenha suas conversas organizadas
-          em canais.
-        </p>
-      </div>
+            <h3>
+                Voz em tempo real
+            </h3>
 
-      <div class="card">
-        <div class="icon">🖼️</div>
-        <h3>Mídia</h3>
-        <p>
-          Compartilhe imagens, vídeos, GIFs e outros conteúdos
-          diretamente nos chats.
-        </p>
-      </div>
+            <p>
+                Entre em salas de voz e converse com seus amigos
+                sem complicação.
+            </p>
 
-      <div class="card">
-        <div class="icon">👥</div>
-        <h3>Comunidades</h3>
-        <p>
-          Crie seus próprios servidores e convide seus amigos
-          para participar.
-        </p>
-      </div>
+        </div>
 
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Simples e rápido</h3>
-        <p>
-          Uma interface moderna pensada para tornar a comunicação
-          mais prática.
-        </p>
-      </div>
+
+        <div class="feature">
+
+            <div class="feature-icon">📺</div>
+
+            <h3>
+                Transmissão
+            </h3>
+
+            <p>
+                Compartilhe sua tela e assista conteúdos juntos
+                enquanto conversa.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">💬</div>
+
+            <h3>
+                Chats organizados
+            </h3>
+
+            <p>
+                Crie canais para manter suas conversas organizadas
+                do seu jeito.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">🖼️</div>
+
+            <h3>
+                Fotos e vídeos
+            </h3>
+
+            <p>
+                Compartilhe imagens, vídeos, GIFs e outros
+                conteúdos diretamente nas conversas.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">👥</div>
+
+            <h3>
+                Servidores
+            </h3>
+
+            <p>
+                Crie seu próprio espaço e convide seus amigos
+                para participar.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">⚡</div>
+
+            <h3>
+                Experiência simples
+            </h3>
+
+            <p>
+                Uma interface limpa para você encontrar
+                rapidamente o que precisa.
+            </p>
+
+        </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <section class="download" id="download">
+<!-- SHOWCASE -->
 
-    <div class="download-box">
+<section id="experiencia">
 
-      <h2>
-        Pronto para entrar?
-      </h2>
+    <div class="showcase">
 
-      <p>
-        Baixe o VoxCord e comece a conversar.
-      </p>
+        <div class="showcase-text">
 
-      <!-- TROQUE O # PELO LINK DO SEU DOWNLOAD -->
+            <div class="eyebrow">
+                Feito para ficar junto
+            </div>
 
-      <a href="#" class="btn btn-primary">
-        ↓ Baixar VoxCord
-      </a>
+            <h2 class="section-title">
+                Converse enquanto
+                compartilha.
+            </h2>
 
-      <div class="version">
-        VoxCord • Versão 1.0
-      </div>
+            <p class="section-description">
+                Entre em uma chamada, compartilhe sua tela,
+                converse no chat e aproveite o momento sem
+                precisar ficar pulando entre aplicativos.
+            </p>
+
+
+            <div class="check-list">
+
+                <div class="check">
+                    <span>✓</span>
+                    Chamadas de voz
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Transmissão de tela
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Chat integrado
+                </div>
+
+                <div class="check">
+                    <span>✓</span>
+                    Servidores personalizados
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="showcase-card">
+
+            <div class="call-card">
+
+                <div class="call-top">
+                    <span>🔊 Sala principal</span>
+                    <span>● Ao vivo</span>
+                </div>
+
+                <div class="people">
+
+                    <div class="person">
+                        <div class="person-avatar"></div>
+                    </div>
+
+                    <div class="person">
+                        <div class="person-avatar"></div>
+                    </div>
+
+                    <div class="person">
+                        <div class="person-avatar"></div>
+                    </div>
+
+                    <div class="person">
+                        <div class="person-avatar"></div>
+                    </div>
+
+                </div>
+
+                <div class="call-controls">
+                    <div class="control"></div>
+                    <div class="control"></div>
+                    <div class="control"></div>
+                    <div class="control"></div>
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <footer>
+<!-- CTA -->
 
-    © 2026 VoxCord.
-    Feito para conectar pessoas.
+<section class="cta" id="download">
 
-  </footer>
+    <div class="cta-box">
 
-</body>
-        </html>
+        <div class="eyebrow">
+            VoxCord
+        </div>
+
+        <h2>
+            Seu espaço está chegando.
+        </h2>
+
+        <p>
+            O VoxCord ainda está em desenvolvimento.
+            Em breve você poderá baixar e começar a usar.
+        </p>
+
+        <!-- Quando o aplicativo estiver pronto,
+             troque o # pelo link do download -->
+
+        <a href="#" class="btn btn-primary">
+            D
