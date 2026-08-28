@@ -1,1110 +1,1595 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#03030a">
-  <meta name="description" content="VoxCord — Fale. Conecte. Viva o VoxCord.">
-  <title>VoxCord — Fale. Conecte. Viva o VoxCord.</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --bg:#03030a;
-      --panel:#080914;
-      --panel2:#0b0c18;
-      --text:#f7f7ff;
-      --muted:#a5a7ba;
-      --line:rgba(150,130,255,.18);
-      --purple:#9a38ff;
-      --blue:#147bff;
-      --cyan:#00c9ff;
-      --pink:#d12cff;
-      --shadow:0 0 45px rgba(115,43,255,.22);
-    }
+<title>VoxCord — Fale. Conecte. Viva.</title>
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+<meta name="description" content="VoxCord — comunicação simples, moderna e feita para conectar pessoas.">
 
-    html{
-      scroll-behavior:smooth;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    body{
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,
-      BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      background:
-        radial-gradient(circle at 18% 18%,rgba(72,24,170,.12),transparent 28%),
-        radial-gradient(circle at 82% 30%,rgba(0,112,255,.08),transparent 26%),
-        var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
-    }
+<style>
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-      background-size:70px 70px;
-      mask-image:linear-gradient(to bottom,black,transparent 70%);
-      opacity:.25;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
+html {
+    scroll-behavior: smooth;
+}
 
-    button{
-      font-family:inherit;
-    }
+body {
+    font-family: "Inter", sans-serif;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(91, 38, 255, .10), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(0, 153, 255, .08), transparent 28%),
+        #05060c;
+    color: #fff;
+    overflow-x: hidden;
+}
 
-    .container{
-      width:min(1180px,calc(100% - 44px));
-      margin:auto;
-    }
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-    /* NAVBAR */
+button {
+    font-family: inherit;
+}
 
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      height:76px;
-      background:rgba(3,3,10,.76);
-      backdrop-filter:blur(18px);
-      border-bottom:1px solid rgba(160,140,255,.12);
-    }
+img {
+    max-width: 100%;
+    display: block;
+}
 
-    .nav{
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:30px;
-    }
+/* =========================
+   FUNDO
+========================= */
 
-    .brand img{
-      width:166px;
-      height:52px;
-      object-fit:contain;
-      display:block;
-    }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size: 70px 70px;
+    mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
 
-    .links{
-      display:flex;
-      align-items:center;
-      gap:30px;
-      font-size:14px;
-      color:#ddd;
-    }
+/* =========================
+   HEADER
+========================= */
 
-    .links a{
-      position:relative;
-      padding:28px 0;
-    }
+header {
+    height: 78px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 
-    .links a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:15px;
-      height:2px;
-      border-radius:99px;
-      background:linear-gradient(90deg,var(--pink),var(--blue));
-      transform:scaleX(0);
-      transition:.25s;
-    }
+    background: rgba(4,5,12,.82);
+    backdrop-filter: blur(18px);
 
-    .links a:hover::after,
-    .links a.active::after{
-      transform:scaleX(1);
-    }
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
 
-    .header-btn,
-    .primary{
-      border:1px solid rgba(255,255,255,.15);
-      background:linear-gradient(135deg,#9b25ff,#146dff);
-      box-shadow:0 0 24px rgba(107,44,255,.38);
-      color:#fff;
-      font-weight:750;
-      border-radius:10px;
-      padding:12px 18px;
-      cursor:pointer;
-      transition:.2s;
-      white-space:nowrap;
-    }
+.navbar {
+    width: min(1450px, 92%);
+    height: 100%;
+    margin: auto;
 
-    .header-btn:hover,
-    .primary:hover{
-      transform:translateY(-2px);
-      box-shadow:0 0 35px rgba(115,53,255,.55);
-    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-    .menu{
-      display:none;
-      background:none;
-      border:0;
-      color:#fff;
-      font-size:27px;
-      cursor:pointer;
-    }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-    /* GERAL */
+.logo img {
+    width: 155px;
+    height: 48px;
+    object-fit: contain;
+}
 
-    section{
-      border-bottom:1px solid rgba(150,130,255,.1);
-    }
+.nav-links {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+}
 
-    /* HERO */
+.nav-links a {
+    font-size: 14px;
+    color: #d7d7e5;
+    transition: .25s;
+    position: relative;
+}
 
-    .hero{
-      min-height:590px;
-      display:flex;
-      align-items:center;
-      position:relative;
-    }
+.nav-links a:hover {
+    color: white;
+}
 
-    .hero::after{
-      content:"";
-      position:absolute;
-      width:650px;
-      height:360px;
-      right:12%;
-      top:90px;
-      background:radial-gradient(
-        circle,
-        rgba(81,22,255,.24),
-        transparent 66%
-      );
-      filter:blur(12px);
-      pointer-events:none;
-    }
+.nav-links a.active::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    left: 0;
+    right: 0;
+    bottom: -12px;
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns:40% 60%;
-      align-items:center;
-      min-height:590px;
-      position:relative;
-      z-index:1;
-    }
+    background: linear-gradient(90deg,#a52cff,#317cff);
+    box-shadow: 0 0 12px #783cff;
+}
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border:1px solid rgba(143,82,255,.35);
-      border-radius:9px;
-      background:rgba(87,37,160,.08);
-      font-size:12px;
-      margin-bottom:18px;
-      box-shadow:0 0 20px rgba(125,44,255,.12);
-    }
+.nav-download {
+    border: 0;
+    cursor: pointer;
 
-    .eyebrow span{
-      color:#bd7cff;
-    }
+    padding: 12px 21px;
+    border-radius: 9px;
 
-    .hero h1{
-      font-size:clamp(42px,5vw,67px);
-      line-height:.98;
-      letter-spacing:-3px;
-      max-width:510px;
-    }
+    color: white;
+    font-weight: 600;
 
-    .gradient{
-      background:linear-gradient(
+    background: linear-gradient(100deg,#a82cff,#285fff);
+
+    box-shadow:
+        0 0 22px rgba(126,48,255,.38),
+        inset 0 0 0 1px rgba(255,255,255,.18);
+
+    transition: .25s;
+}
+
+.nav-download:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 30px rgba(126,48,255,.58),
+        inset 0 0 0 1px rgba(255,255,255,.25);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 700px;
+    padding-top: 78px;
+
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid rgba(255,255,255,.07);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+
+    width: 700px;
+    height: 500px;
+
+    left: 28%;
+    top: 80px;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(78, 35, 255, .34),
+        rgba(15, 75, 255, .12),
+        transparent 70%
+    );
+
+    filter: blur(45px);
+    pointer-events: none;
+}
+
+.hero-inner {
+    width: min(1450px, 92%);
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 42% 58%;
+    align-items: center;
+
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text {
+    padding-right: 30px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 13px;
+
+    border: 1px solid rgba(150,90,255,.35);
+    border-radius: 8px;
+
+    background: rgba(80,35,170,.12);
+
+    font-size: 12px;
+    color: #eee;
+    margin-bottom: 22px;
+
+    box-shadow: 0 0 18px rgba(120,50,255,.12);
+}
+
+.hero h1 {
+    font-size: clamp(48px, 5vw, 76px);
+    line-height: 1.03;
+    letter-spacing: -3px;
+    margin-bottom: 22px;
+}
+
+.gradient {
+    background: linear-gradient(
         100deg,
-        #fff 0%,
-        #fff 25%,
-        #c144ff 55%,
-        #257bff 92%
-      );
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
+        #b32cff,
+        #7d45ff,
+        #168cff
+    );
 
-    .hero p{
-      color:#c4c6d2;
-      line-height:1.7;
-      max-width:470px;
-      margin:22px 0 27px;
-      font-size:15px;
-    }
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 
-    .actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
+.hero-description {
+    max-width: 540px;
+    color: #c5c5d2;
+    line-height: 1.75;
+    font-size: 15px;
+}
 
-    .secondary{
-      padding:12px 18px;
-      border-radius:10px;
-      border:1px solid rgba(160,150,255,.23);
-      background:rgba(10,10,22,.7);
-      font-weight:700;
-      transition:.2s;
-    }
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    margin-top: 28px;
+}
 
-    .secondary:hover{
-      background:rgba(70,55,110,.22);
-      border-color:rgba(170,140,255,.5);
-    }
+.btn {
+    padding: 14px 23px;
+    border-radius: 9px;
 
-    .trust{
-      display:flex;
-      gap:28px;
-      margin-top:28px;
-      flex-wrap:wrap;
-      color:#d2d2df;
-      font-size:12px;
-    }
+    border: 1px solid rgba(255,255,255,.12);
 
-    .trust span{
-      display:flex;
-      align-items:center;
-      gap:7px;
-    }
+    cursor: pointer;
 
-    .trust b{
-      font-size:17px;
-      color:#a94bff;
-    }
+    font-weight: 600;
+    color: white;
 
-    /* MOCKUP */
+    transition: .25s;
+}
 
-    .hero-art{
-      height:530px;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
+.btn-primary {
+    background: linear-gradient(100deg,#a72aff,#236cff);
+    box-shadow: 0 0 25px rgba(113,43,255,.38);
+}
 
-    .glow{
-      position:absolute;
-      width:500px;
-      height:300px;
-      border-radius:50%;
-      background:radial-gradient(
-        circle,
-        rgba(83,25,255,.3),
-        transparent 66%
-      );
-      filter:blur(8px);
-    }
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(113,43,255,.58);
+}
 
-    .app-window{
-      position:absolute;
-      width:min(600px,92%);
-      height:365px;
-      right:3%;
-      top:78px;
-      border:1px solid rgba(104,119,255,.85);
-      border-radius:16px;
-      background:linear-gradient(
-        145deg,
-        rgba(12,13,28,.96),
-        rgba(5,6,15,.98)
-      );
-      box-shadow:
-        0 0 28px rgba(47,87,255,.3),
-        0 0 60px rgba(184,29,255,.17);
-      overflow:hidden;
-      transform:
+.btn-secondary {
+    background: rgba(255,255,255,.025);
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,.07);
+}
+
+/* =========================
+   HERO VISUAL
+========================= */
+
+.hero-visual {
+    height: 560px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-visual::before {
+    content: "";
+    position: absolute;
+
+    width: 550px;
+    height: 420px;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(123,36,255,.33),
+        rgba(0,120,255,.15),
+        transparent 70%
+    );
+
+    filter: blur(35px);
+}
+
+.app-preview {
+    width: 650px;
+    max-width: 95%;
+
+    border-radius: 18px;
+
+    position: relative;
+    z-index: 2;
+
+    filter:
+        drop-shadow(0 0 20px rgba(107,55,255,.55))
+        drop-shadow(0 0 45px rgba(0,114,255,.25));
+
+    transform: perspective(1000px) rotateY(-2deg);
+
+    transition: .4s;
+}
+
+.app-preview:hover {
+    transform:
         perspective(1000px)
-        rotateY(-4deg)
-        rotateX(2deg);
-    }
+        rotateY(0deg)
+        translateY(-5px);
+}
 
-    .window-head{
-      height:48px;
-      border-bottom:1px solid rgba(150,150,255,.12);
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:0 15px;
-      font-size:12px;
-    }
+.mascot {
+    position: absolute;
 
-    .window-logo{
-      width:23px;
-      height:23px;
-      border-radius:7px;
-      background:linear-gradient(135deg,#a532ff,#157fff);
-      display:grid;
-      place-items:center;
-      font-weight:900;
-    }
+    width: 245px;
+    height: 330px;
 
-    .app-body{
-      display:grid;
-      grid-template-columns:55px 150px 1fr;
-      height:calc(100% - 48px);
-    }
+    object-fit: contain;
 
-    .rail{
-      border-right:1px solid rgba(150,150,255,.1);
-      display:flex;
-      align-items:center;
-      flex-direction:column;
-      padding-top:15px;
-      gap:13px;
-    }
+    left: 6%;
+    bottom: 5px;
 
-    .rail i{
-      width:29px;
-      height:29px;
-      border-radius:9px;
-      border:1px solid rgba(130,130,255,.13);
-      display:grid;
-      place-items:center;
-      color:#9c9eae;
-      font-style:normal;
-    }
+    z-index: 4;
 
-    .rail i:first-child{
-      background:linear-gradient(135deg,#7536ff,#167cff);
-      color:#fff;
-    }
+    filter:
+        drop-shadow(0 0 12px rgba(151,42,255,.55))
+        drop-shadow(0 0 25px rgba(32,100,255,.35));
 
-    .channels{
-      padding:17px 12px;
-      border-right:1px solid rgba(150,150,255,.1);
-      font-size:10px;
-      color:#777b91;
-    }
+    animation: mascotFloat 4s ease-in-out infinite;
+}
 
-    .channels strong{
-      display:block;
-      color:#c7c9d7;
-      font-size:11px;
-      margin-bottom:16px;
+@keyframes mascotFloat {
+    0%,100% {
+        transform: translateY(0);
     }
 
-    .channel{
-      padding:7px 8px;
-      border-radius:6px;
-      margin:3px 0;
+    50% {
+        transform: translateY(-9px);
     }
+}
 
-    .channel.sel{
-      background:rgba(100,77,180,.18);
-      color:#fff;
-    }
+/* =========================
+   BENEFÍCIOS
+========================= */
 
-    .chat{
-      display:flex;
-      flex-direction:column;
-      min-width:0;
-    }
+.benefits {
+    width: min(1450px,92%);
+    margin: auto;
 
-    .chat-head{
-      padding:17px 15px;
-      border-bottom:1px solid rgba(150,150,255,.1);
-      font-weight:700;
-      font-size:13px;
-    }
+    display: flex;
+    gap: 45px;
 
-    .messages{
-      padding:15px;
-      display:flex;
-      flex-direction:column;
-      gap:15px;
-    }
+    padding: 25px 0 35px;
+}
 
-    .msg{
-      display:flex;
-      gap:10px;
-      font-size:11px;
-      color:#d6d8e3;
-    }
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-    .avatar{
-      width:25px;
-      height:25px;
-      flex:0 0 25px;
-      border-radius:50%;
-      background:linear-gradient(135deg,#8738ff,#0c94ff);
-    }
+    color: #d9d9e5;
+    font-size: 13px;
+}
 
-    .msg small{
-      color:#70758d;
-    }
+.benefit-icon {
+    color: #a735ff;
+    font-size: 20px;
+}
 
-    .composer{
-      margin:auto 13px 12px;
-      border:1px solid rgba(150,150,255,.14);
-      border-radius:8px;
-      padding:9px;
-      color:#65697d;
-      font-size:10px;
-    }
+/* =========================
+   SECTIONS
+========================= */
 
-    .mascot{
-      position:absolute;
-      width:270px;
-      height:270px;
-      object-fit:cover;
-      border-radius:50%;
-      left:2%;
-      bottom:4px;
-      filter:drop-shadow(
-        0 12px 30px rgba(105,37,255,.45)
-      );
-      z-index:4;
-      animation:float 5s ease-in-out infinite;
-    }
+.section {
+    padding: 90px 0;
 
-    @keyframes float{
-      0%,100%{
-        transform:translateY(0);
-      }
-
-      50%{
-        transform:translateY(-9px);
-      }
-    }
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
 
-    /* SOBRE */
+.container {
+    width: min(1450px,92%);
+    margin: auto;
+}
 
-    .about{
-      padding:65px 0;
-    }
+.section-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ad7aff;
+    margin-bottom: 12px;
+}
 
-    .about-grid{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:45px;
-      align-items:center;
-    }
+.section-title {
+    font-size: 32px;
+    margin-bottom: 14px;
+}
 
-    .kicker{
-      font-size:11px;
-      letter-spacing:1.5px;
-      color:#b96cff;
-      font-weight:800;
-      text-transform:uppercase;
-    }
+.section-description {
+    color: #b9b9c8;
+    max-width: 600px;
+    line-height: 1.7;
+}
 
-    .title{
-      font-size:31px;
-      letter-spacing:-1px;
-      margin:10px 0 12px;
-    }
+/* =========================
+   SOBRE
+========================= */
 
-    .copy{
-      color:#aeb1c1;
-      line-height:1.75;
-      font-size:14px;
-      max-width:600px;
-    }
+.about {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-text {
+    padding-left: 10px;
+}
+
+.about-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 330px;
+}
 
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:10px;
-      margin-top:25px;
-    }
+.about-visual img {
+    width: 500px;
+    max-width: 100%;
 
-    .mini{
-      border:1px solid rgba(145,130,255,.18);
-      background:linear-gradient(
-        180deg,
-        rgba(17,17,32,.75),
-        rgba(6,7,15,.82)
-      );
-      padding:17px 13px;
-      border-radius:10px;
-      min-height:115px;
-      transition:.2s;
-    }
+    object-fit: contain;
 
-    .mini:hover{
-      transform:translateY(-3px);
-      border-color:rgba(158,80,255,.5);
-      box-shadow:0 0 25px rgba(100,42,255,.12);
-    }
+    filter:
+        drop-shadow(0 0 25px rgba(116,38,255,.5))
+        drop-shadow(0 0 50px rgba(20,80,255,.18));
+}
 
-    .mini .ico{
-      font-size:22px;
-      color:#9c55ff;
-    }
+/* =========================
+   CARDS
+========================= */
 
-    .mini h3{
-      font-size:13px;
-      margin:10px 0 5px;
-    }
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 12px;
+    margin-top: 35px;
+}
 
-    .mini p{
-      font-size:10px;
-      color:#8f93a5;
-      line-height:1.5;
-    }
+.card {
+    min-height: 125px;
 
-    .about-art{
-      min-height:300px;
-      display:grid;
-      place-items:center;
-      position:relative;
-    }
+    padding: 20px;
 
-    .logo-card{
-      width:300px;
-      height:235px;
-      border:1px solid rgba(100,132,255,.45);
-      border-radius:22px;
-      background:linear-gradient(
-        145deg,
-        rgba(16,12,37,.92),
-        rgba(5,7,18,.92)
-      );
-      box-shadow:0 0 35px rgba(92,37,255,.22);
-      display:grid;
-      place-items:center;
-      position:relative;
-      transform:perspective(800px) rotateY(-7deg);
-    }
+    border: 1px solid rgba(128,103,255,.18);
+    border-radius: 10px;
 
-    .logo-card img{
-      width:210px;
-      max-height:125px;
-      object-fit:contain;
-    }
+    background:
+        linear-gradient(
+            145deg,
+            rgba(44,27,85,.24),
+            rgba(9,12,25,.65)
+        );
 
-    .logo-card::before,
-    .logo-card::after{
-      content:"";
-      position:absolute;
-      border:1px solid rgba(91,74,255,.3);
-      width:55px;
-      height:55px;
-      border-radius:10px;
-    }
+    transition: .3s;
+}
 
-    .logo-card::before{
-      left:-48px;
-      top:50px;
-    }
+.card:hover {
+    transform: translateY(-4px);
 
-    .logo-card::after{
-      right:-48px;
-      top:85px;
-    }
+    border-color: rgba(143,80,255,.55);
 
-    /* RECURSOS */
+    box-shadow:
+        0 0 25px rgba(119,50,255,.13);
+}
 
-    .features{
-      padding:65px 0;
-    }
+.card-icon {
+    font-size: 26px;
+    margin-bottom: 12px;
 
-    .center{
-      text-align:center;
-    }
+    background: linear-gradient(120deg,#be37ff,#1f8cff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
 
-    .center .copy{
-      margin:0 auto;
-    }
+.card h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
 
-    .feature-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:32px;
-    }
+.card p {
+    font-size: 11px;
+    color: #a6a6b7;
+    line-height: 1.6;
+}
 
-    .feature{
-      padding:26px;
-      border:1px solid rgba(145,130,255,.17);
-      border-radius:12px;
-      background:linear-gradient(
-        160deg,
-        rgba(15,14,31,.78),
-        rgba(5,6,14,.9)
-      );
-      min-height:175px;
-      transition:.25s;
-    }
+/* =========================
+   RECURSOS
+========================= */
 
-    .feature:hover{
-      transform:translateY(-4px);
-      border-color:rgba(178,71,255,.5);
-      box-shadow:0 0 28px rgba(105,35,255,.15);
-    }
+.resources {
+    text-align: center;
+}
 
-    .feature .bigico{
-      font-size:30px;
-      filter:drop-shadow(
-        0 0 9px rgba(169,65,255,.7)
-      );
-    }
+.resources .section-description {
+    margin: auto;
+}
 
-    .feature h3{
-      font-size:14px;
-      margin:15px 0 7px;
-    }
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 14px;
 
-    .feature p{
-      font-size:11px;
-      line-height:1.6;
-      color:#989bad;
-    }
+    margin-top: 40px;
+}
 
-    /* DOWNLOAD */
+.resource-card {
+    padding: 28px 20px;
 
-    .download{
-      padding:65px 0;
-    }
+    min-height: 155px;
 
-    .platforms{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin:32px 0 13px;
-    }
+    border: 1px solid rgba(128,103,255,.18);
+    border-radius: 10px;
 
-    .platform{
-      border:1px solid rgba(145,130,255,.18);
-      border-radius:11px;
-      padding:18px;
-      background:rgba(10,10,20,.75);
-      display:flex;
-      align-items:center;
-      gap:14px;
-    }
+    background: rgba(9,10,20,.75);
 
-    .platform .picon{
-      font-size:30px;
-    }
+    transition: .3s;
+}
+
+.resource-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(160,70,255,.55);
+
+    box-shadow: 0 0 30px rgba(116,39,255,.12);
+}
+
+.resource-icon {
+    font-size: 34px;
+    margin-bottom: 15px;
+
+    background: linear-gradient(120deg,#b731ff,#1591ff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.resource-card h3 {
+    font-size: 14px;
+    margin-bottom: 9px;
+}
+
+.resource-card p {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #a7a7b8;
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+.download-section {
+    text-align: center;
+}
+
+.platforms {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 14px;
+
+    margin: 40px auto 15px;
+
+    max-width: 900px;
+}
+
+.platform {
+    padding: 24px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(128,103,255,.18);
+
+    background: rgba(9,10,20,.75);
+
+    text-align: left;
+}
+
+.platform-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.platform h3 {
+    font-size: 15px;
+}
+
+.platform p {
+    font-size: 11px;
+    color: #9999aa;
+    margin: 5px 0 17px;
+}
+
+.platform button {
+    width: 100%;
+    padding: 9px;
+
+    border-radius: 6px;
+
+    background: linear-gradient(100deg,#702cff,#2075ff);
 
-    .platform h3{
-      font-size:14px;
+    color: white;
+
+    border: 0;
+
+    cursor: pointer;
+}
+
+.platform.soon button {
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.1);
+    color: #aaa;
+    cursor: default;
+}
+
+.ios {
+    max-width: 700px;
+    margin: 15px auto 0;
+
+    padding: 20px;
+
+    border: 1px solid rgba(168,70,255,.4);
+    border-radius: 10px;
+
+    text-align: left;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(83,34,137,.15),
+            rgba(15,65,130,.1)
+        );
+}
+
+.ios h3 {
+    margin-bottom: 5px;
+}
+
+.ios p {
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* =========================
+   CONTATO
+========================= */
+
+.contact {
+    text-align: center;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.contact-card {
+    min-width: 170px;
+
+    padding: 15px 20px;
+
+    border: 1px solid rgba(128,103,255,.18);
+    border-radius: 9px;
+
+    background: rgba(9,10,20,.75);
+
+    transition: .25s;
+}
+
+.contact-card:hover {
+    border-color: rgba(146,65,255,.55);
+    transform: translateY(-3px);
+}
+
+.contact-card strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.contact-card span {
+    font-size: 11px;
+    color: #9292a3;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 50px 0;
+
+    border-top: 1px solid rgba(130,70,255,.22);
+
+    background: #04050a;
+}
+
+.footer-inner {
+    width: min(1450px,92%);
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+
+    gap: 40px;
+}
+
+.footer-logo img {
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.footer-main p {
+    font-size: 12px;
+    color: #a0a0ae;
+    max-width: 300px;
+    line-height: 1.6;
+}
+
+.footer-column h4 {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.footer-column a {
+    display: block;
+
+    font-size: 11px;
+    color: #898995;
+
+    margin-bottom: 9px;
+
+    transition: .2s;
+}
+
+.footer-column a:hover {
+    color: #b66cff;
+}
+
+.copyright {
+    margin-top: 30px;
+
+    font-size: 10px;
+    color: #666675;
+}
+
+/* =========================
+   MODAL DOWNLOAD
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0,0,0,.75);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 3000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-box {
+    width: min(430px,90%);
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    border: 1px solid rgba(143,73,255,.45);
+
+    background:
+        linear-gradient(
+            145deg,
+            #111127,
+            #080912
+        );
+
+    box-shadow:
+        0 0 60px rgba(100,40,255,.25);
+
+    text-align: center;
+}
+
+.modal-box img {
+    width: 80px;
+    margin: 0 auto 20px;
+}
+
+.modal-box h2 {
+    margin-bottom: 12px;
+}
+
+.modal-box p {
+    color: #aaaabb;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.close-modal {
+    margin-top: 22px;
+
+    border: 0;
+
+    padding: 10px 22px;
+
+    border-radius: 7px;
+
+    background: linear-gradient(100deg,#9e2cff,#2671ff);
+
+    color: white;
+
+    cursor: pointer;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1000px) {
+
+    .nav-links {
+        display: none;
     }
 
-    .platform p{
-      font-size:10px;
-      color:#8f93a4;
-      margin-top:3px;
+    .hero-inner {
+        grid-template-columns: 1fr;
     }
 
-    .platform button{
-      margin-left:auto;
-      padding:8px 12px;
-      border:1px solid rgba(150,140,255,.25);
-      border-radius:8px;
-      background:linear-gradient(
-        135deg,
-        #7528ff,
-        #116fff
-      );
-      color:#fff;
-      font-weight:750;
-      cursor:pointer;
+    .hero {
+        padding-top: 120px;
     }
 
-    .soon button{
-      background:transparent;
-      color:#b7b9c9;
-      box-shadow:none;
-      cursor:default;
+    .hero-text {
+        text-align: center;
+        padding: 0;
     }
 
-    .ios{
-      border:1px solid rgba(200,71,255,.45);
-      box-shadow:0 0 25px rgba(190,42,255,.12);
-      padding:18px 25px;
-      border-radius:12px;
-      display:flex;
-      align-items:center;
-      gap:16px;
-      max-width:720px;
-      margin:auto;
+    .hero-description {
+        margin: auto;
     }
 
-    .ios .picon{
-      font-size:32px;
+    .hero-buttons {
+        justify-content: center;
     }
 
-    .ios strong{
-      font-size:14px;
+    .hero-visual {
+        height: 430px;
     }
 
-    .ios span{
-      display:block;
-      color:#8e92a4;
-      font-size:11px;
-      margin-top:3px;
+    .mascot {
+        width: 170px;
+        height: 230px;
+        left: 0;
+        bottom: 0;
     }
 
-    /* CONTATO */
+    .app-preview {
+        width: 600px;
+    }
 
-    .contact{
-      padding:65px 0;
+    .about {
+        grid-template-columns: 1fr;
     }
 
-    .socials{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:10px;
-      margin-top:30px;
+    .about-text {
+        text-align: center;
+        padding: 0;
     }
 
-    .social{
-      padding:17px;
-      border:1px solid rgba(145,130,255,.17);
-      background:rgba(9,9,19,.78);
-      border-radius:10px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      transition:.2s;
+    .section-description {
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .social:hover{
-      transform:translateY(-3px);
-      border-color:rgba(164,76,255,.5);
-      box-shadow:0 0 25px rgba(115,40,255,.12);
+    .cards {
+        grid-template-columns: repeat(2,1fr);
     }
 
-    .social > div:first-child{
-      font-size:24px;
+    .resource-grid {
+        grid-template-columns: repeat(2,1fr);
     }
 
-    .social b{
-      font-size:13px;
+    .platforms {
+        grid-template-columns: 1fr;
     }
 
-    .social small{
-      display:block;
-      color:#85899b;
-      margin-top:3px;
-      font-size:10px;
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
     }
 
-    /* FOOTER */
+}
 
-    footer{
-      padding:45px 0;
-    }
+@media(max-width:600px) {
 
-    .footer-grid{
-      display:grid;
-      grid-template-columns:2fr 1fr 1fr 1fr;
-      gap:35px;
+    .navbar {
+        width: 90%;
     }
 
-    .footer-brand img{
-      width:155px;
-      margin-bottom:13px;
+    .logo img {
+        width: 125px;
     }
 
-    .footer-brand p{
-      color:#c0c2cf;
-      font-size:13px;
+    .nav-download {
+        padding: 10px 13px;
+        font-size: 11px;
     }
 
-    .copyright{
-      margin-top:18px;
-      color:#686b7d;
-      font-size:11px;
+    .hero h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
     }
 
-    .footer-col{
-      display:flex;
-      flex-direction:column;
-      gap:9px;
+    .hero-visual {
+        height: 350px;
     }
 
-    .footer-col h4{
-      font-size:12px;
-      margin-bottom:4px;
-      color:#ddd;
+    .mascot {
+        width: 130px;
+        height: 190px;
+        left: -10px;
     }
 
-    .footer-col a{
-      font-size:11px;
-      color:#888b9d;
-      transition:.2s;
+    .benefits {
+        flex-wrap: wrap;
+        gap: 15px 25px;
     }
 
-    .footer-col a:hover{
-      color:#b76aff;
+    .cards,
+    .resource-grid {
+        grid-template-columns: 1fr;
     }
 
-    /* TOAST */
-
-    .toast{
-      position:fixed;
-      left:50%;
-      bottom:25px;
-      transform:translate(-50%,20px);
-      background:rgba(12,11,25,.96);
-      border:1px solid rgba(158,83,255,.45);
-      box-shadow:0 0 30px rgba(105,35,255,.25);
-      padding:13px 20px;
-      border-radius:10px;
-      color:#fff;
-      font-size:13px;
-      opacity:0;
-      pointer-events:none;
-      transition:.3s;
-      z-index:100;
-      text-align:center;
+    .footer-inner {
+        grid-template-columns: 1fr;
     }
 
-    .toast.show{
-      transform:translate(-50%,0);
-      opacity:1;
+    .contact-links {
+        flex-direction: column;
     }
 
-    /* RESPONSIVO */
-
-    @media(max-width:900px){
-
-      .links,
-      .header-btn{
-        display:none;
-      }
-
-      .menu{
-        display:block;
-      }
-
-      .hero-grid,
-      .about-grid{
-        grid-template-columns:1fr;
-      }
-
-      .hero{
-        padding:40px 0 10px;
-      }
-
-      .hero-art{
-        height:480px;
-      }
-
-      .app-window{
-        right:0;
-        width:92%;
-        top:45px;
-      }
-
-      .mascot{
-        width:210px;
-        height:210px;
-        left:2%;
-        bottom:25px;
-      }
-
-      .feature-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .footer-grid{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .cards{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .platforms,
-      .socials{
-        grid-template-columns:1fr;
-      }
-
-      .about-art{
-        margin-top:15px;
-      }
+    .contact-card {
+        width: 100%;
     }
 
-    @media(max-width:560px){
-
-      .container{
-        width:min(100% - 28px,1180px);
-      }
-
-      .topbar{
-        height:68px;
-      }
-
-      .brand img{
-        width:142px;
-      }
-
-      .hero h1{
-        font-size:44px;
-        letter-spacing:-2px;
-      }
-
-      .hero p{
-        font-size:13px;
-      }
-
-      .hero-art{
-        height:390px;
-      }
-
-      .app-window{
-        height:270px;
-        top:35px;
-      }
-
-      .app-body{
-        grid-template-columns:42px 105px 1fr;
-      }
-
-      .channels{
-        font-size:8px;
-      }
-
-      .messages{
-        padding:9px;
-        gap:9px;
-      }
-
-      .msg{
-        font-size:9px;
-      }
-
-      .composer{
-        font-size:8px;
-      }
-
-      .mascot{
-        width:150px;
-        height:150px;
-        bottom:4px;
-        left:-3%;
-      }
-
-      .feature-grid{
-        grid-template-columns:1fr;
-      }
-
-      .cards{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .mini{
-        min-height:105px;
-        padding:13px 10px;
-      }
-
-      .title{
-        font-size:27px;
-      }
-
-      .logo-card{
-        width:250px;
-        height:195px;
-      }
-
-      .logo-card img{
-        width:175px;
-      }
-
-      .footer-grid{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .footer-brand{
-        grid-column:1/-1;
-      }
-
-      .actions a,
-      .actions button{
-        width:100%;
-        text-align:center;
-      }
-
-      .trust{
-        gap:13px;
-      }
-
-      .trust span{
-        font-size:10px;
-      }
-    }
-  </style>
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
+<!-- ================= HEADER ================= -->
 
-  <header class="topbar">
-    <div class="container nav">
+<header>
 
-      <a class="brand" href="#inicio" aria-label="VoxCord">
-        <img src="assets/logo-horizontal.png" alt="VoxCord">
-      </a>
+<nav class="navbar">
 
-      <nav class="links" aria-label="Navegação">
-        <a class="active" href="#inicio">Início</a>
-        <a href="#recursos">Recursos</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#download">Download</a>
-        <a href="#contato">Contato</a>
-      </nav>
+<a href="#inicio" class="logo">
+    <img src="assets/logo_voxcord_com_nome.png" alt="VoxCord">
+</a>
 
-      <a class="header-btn" href="#download">
-        ⇩ &nbsp; Baixar Agora
-      </a>
+<div class="nav-links">
 
-      <button class="menu" id="menuBtn" aria-label="Abrir menu">
-        ☰
-      </button>
+<a href="#inicio" class="active">Início</a>
+<a href="#recursos">Recursos</a>
+<a href="#sobre">Sobre</a>
+<a href="#download">Download</a>
+<a href="#contato">Contato</a>
 
-    </div>
-  </header>
+</div>
+
+<button class="nav-download" onclick="openDownload()">
+    ↓ &nbsp; Baixar Agora
+</button>
+
+</nav>
+
+</header>
 
 
-  <main>
+<!-- ================= HERO ================= -->
 
-    <!-- HERO -->
+<section class="hero" id="inicio">
 
-    <section class="hero" id="inicio">
+<div class="hero-inner">
 
-      <div class="container hero-grid">
+<div class="hero-text">
 
-        <div>
+<div class="badge">
+    🦊 &nbsp; Seu espaço. Suas pessoas.
+</div>
 
-          <div class="eyebrow">
-            ✦
-            <span>Seu espaço. Suas pessoas.</span>
-          </div>
+<h1>
+    Fale.
+    <span class="gradient">Conecte.</span>
+    <br>
+    Viva o <span class="gradient">VoxCord.</span>
+</h1>
 
-          <h1>
-            Fale.
-            <span class="gradient">Conecte.</span>
-            <br>
-            Viva o
-            <span class="gradient">VoxCord.</span>
-          </h1>
+<p class="hero-description">
+    O VoxCord é mais que um chat. É onde comunidades se unem,
+    amizades acontecem e momentos são compartilhados em tempo real.
+</p>
 
-          <p>
-            O VoxCord é mais que um chat. É onde comunidades se unem,
-            amizades acontecem e momentos são compartilhados em tempo real.
-          </p>
+<div class="hero-buttons">
 
-          <div class="actions">
+<button class="btn btn-primary" onclick="openDownload()">
+    ↓ &nbsp; Baixar VoxCord
+</button>
 
-            <button class="primary download-btn">
-              ⇩ &nbsp; Baixar VoxCord
-            </button>
+<a href="#sobre" class="btn btn-secondary">
+    Conhecer mais
+</a>
 
-            <a class="secondary" href="#sobre">
-              Conhecer mais
-     
+</div>
+
+</div>
+
+
+<div class="hero-visual">
+
+<img
+    class="app-preview"
+    src="assets/print_tela_inicial_voxcord.png"
+    alt="Interface do VoxCord"
+>
+
+<img
+    class="mascot"
+    src="assets/mascote_voxcord.png"
+    alt="Mascote VoxCord"
+>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= BENEFÍCIOS ================= -->
+
+<div class="benefits">
+
+<div class="benefit">
+    <span class="benefit-icon">♧</span>
+    Grátis para sempre
+</div>
+
+<div class="benefit">
+    <span class="benefit-icon">ϟ</span>
+    Leve e rápido
+</div>
+
+<div class="benefit">
+    <span class="benefit-icon">♢</span>
+    Seguro e confiável
+</div>
+
+</div>
+
+
+<!-- ================= SOBRE ================= -->
+
+<section class="section" id="sobre">
+
+<div class="container">
+
+<div class="about">
+
+<div class="about-text">
+
+<div class="section-label">
+    Sobre o VoxCord
+</div>
+
+<h2 class="section-title">
+    O que é o VoxCord?
+</h2>
+
+<p class="section-description">
+    O VoxCord é uma plataforma de comunicação feita para todos.
+    Nosso objetivo é oferecer uma experiência leve, moderna e completa,
+    seja para conversar com amigos ou criar grandes comunidades.
+</p>
+
+<div class="cards">
+
+<div class="card">
+    <div class="card-icon">✦</div>
+    <h3>Rápido</h3>
+    <p>Conexão instantânea e sem complicações.</p>
+</div>
+
+<div class="card">
+    <div class="card-icon">♢</div>
+    <h3>Seguro</h3>
+    <p>Seus dados protegidos com criptografia.</p>
+</div>
+
+<div class="card">
+    <div class="card-icon">♨</div>
+    <h3>Leve</h3>
+    <p>Baixo consumo de recursos do sistema.</p>
+</div>
+
+<div class="card">
+    <div class="card-icon">⌘</div>
+    <h3>Moderno</h3>
+    <p>Interface bonita, limpa e fácil de usar.</p>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="about-visual">
+
+<img
+    src="assets/logo_voxcord.png"
+    alt="Logo VoxCord"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= RECURSOS ================= -->
+
+<section class="section resources" id="recursos">
+
+<div class="container">
+
+<div class="section-label">
+    Recursos
+</div>
+
+<h2 class="section-title">
+    Tudo que você precisa<br>
+    em um só lugar
+</h2>
+
+<p class="section-description">
+    Recursos feitos para aproximar pessoas e facilitar
+    a comunicação de verdade.
+</p>
+
+
+<div class="resource-grid">
+
+<div class="resource-card">
+    <div class="resource-icon">▢</div>
+    <h3>Chats em Tempo Real</h3>
+    <p>Converse instantaneamente com sua comunidade.</p>
+</div>
+
+<div class="resource-card">
+    <div class="resource-icon">♬</div>
+    <h3>Chamadas de Voz</h3>
+    <p>Áudio de alta qualidade sem travamentos.</p>
+</div>
+
+<div class="resource-card">
+    <div class="resource-icon">▣</div>
+    <h3>Compartilhamento de Tela</h3>
+    <p>Transmita sua tela com facilidade e segurança.</p>
+</div>
+
+<div class="resource-card">
+    <div class="resource-icon">♙</div>
+    <h3>Bots e Integrações</h3>
+    <p>Adicione bots e personalize seu servidor.</p>
+</div>
+
+<div class="resource-card">
+    <div class="resource-icon">#</div>
+    <h3>Canais Organizados</h3>
+    <p>Mantenha tudo separado e organizado.</p>
+</div>
+
+<div class="resource-card">
+    <div class="resource-icon">♧</div>
+    <h3>Comunidades Ativas</h3>
+    <p>Crie laços, faça amigos e participe.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= DOWNLOAD ================= -->
+
+<section class="section download-section" id="download">
+
+<div class="container">
+
+<div class="section-label">
+    Download
+</div>
+
+<h2 class="section-title">
+    Baixe o <span class="gradient">VoxCord</span>
+</h2>
+
+<p class="section-description">
+    Escolha sua plataforma e comece agora.
+</p>
+
+
+<div class="platforms">
+
+<div class="platform">
+
+<div class="platform-icon">▣</div>
+
+<h3>Windows</h3>
+
+<p>Para Windows 7 ou superior.</p>
+
+<button onclick="openDownload()">
+    ↓ Baixar
+</button>
+
+</div>
+
+
+<div class="platform soon">
+
+<div class="platform-icon">♟</div>
+
+<h3>Android</h3>
+
+<p>Em breve</p>
+
+<button>
+    Em breve
+</button>
+
+</div>
+
+
+<div class="platform soon">
+
+<div class="platform-icon">♟</div>
+
+<h3>Linux</h3>
+
+<p>Em breve</p>
+
+<button>
+    Em breve
+</button>
+
+</div>
+
+</div>
+
+
+<div class="ios">
+
+<h3> &nbsp; Em breve para iOS</h3>
+
+<p>
+    Estamos trabalhando para trazer o VoxCord para iOS.
+    Fique ligado nas novidades!
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CONTATO ================= -->
+
+<section class="section contact" id="contato">
+
+<div class="container">
+
+<div class="section-label">
+    Contato
+</div>
+
+<h2 class="section-title">
+    Fale comigo!
+</h2>
+
+<p class="section-description">
+    Tem dúvidas, sugestões ou quer conversar sobre o projeto?
+    Me chama em qualquer uma das redes abaixo!
+</p>
+
+
+<div class="contact-links">
+
+<a class="contact-card" href="#" onclick="contactAlert('Discord'); return false;">
+    <strong>Discord</strong>
+    <span>Lipee7xs</span>
+</a>
+
+<a class="contact-card" href="#" onclick="contactAlert('GitHub'); return false;">
+    <strong>GitHub</strong>
+    <span>@lipee7xs</span>
+</a>
+
+<a class="contact-card" href="#" onclick="contactAlert('Instagram'); return false;">
+    <strong>Instagram</strong>
+    <span>@lipee7xs</span>
+</a>
+
+<a class="contact-card" href="mailto:contato@voxc0rd.app">
+    <strong>Email</strong>
+    <span>contato@voxc0rd.app</span>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="footer-inner">
+
+<div class="footer-main">
+
+<a class="footer-logo" href="#inicio">
+
+<img
+    src="assets/logo_voxcord_com_nome.png"
+    alt="VoxCord"
+>
+
+</a>
+
+<p>
+    Fale. Conecte. Viva o VoxCord.
+</p>
+
+<div class="copyright">
+    © 2026 VoxCord. Todos os direitos reservados.
+</div>
+
+</div>
+
+
+<div class="footer-column">
+
+<h4>Navegação</h4>
+
+<a href="#inicio">Início</a>
+<a href="#recursos">Recursos</a>
+<a href="#sobre">Sobre</a>
+<a href="#download">Download</a>
+<a href="#contato">Contato</a>
+
+</div>
+
+
+<div class="footer-column">
+
+<h4>Recursos</h4>
+
+<a href="#recursos">Chats</a>
+<a href="#recursos">Voz</a>
+<a href="#recursos">Bots</a>
+<a href="#recursos">Integrações</a>
+<a href="#recursos">Segurança</a>
+
+</div>
+
+
+<div class="footer-column">
+
+<h4>Suporte</h4>
+
+<a href="#">FAQ</a>
+<a href="#">Ajuda</a>
+<a href="#">Política de Privacidade</a>
+<a href="#">Termos de Uso</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="downloadModal">
+
+<div class="modal-box">
+
+<img
+    src="assets/logo_voxcord.png"
+    alt="VoxCord"
+>
+
+<h2>VoxCord para Windows</h2>
+
+<p>
+    O download ainda não está disponível porque
+    o VoxCord está em desenvolvimento.
+    <br><br>
+    Assim que a versão final estiver pronta,
+    o download será disponibilizado aqui.
+</p>
+
+<button class="close-modal" onclick="closeDownload()">
+    Entendi
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+function openDownload() {
+    document
+        .getElementById("downloadModal")
+        .classList.add("active");
+}
+
+function closeDownload() {
+    document
+        .getElementById("downloadModal")
+        .classList.remove("active");
+}
+
+
+/* Fecha clicando fora */
+
+document
+    .getElementById("downloadModal")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+            closeDownload();
+        }
+
+    });
+
+
+/* =========================
+   CONTATO
+========================= */
+
+function contactAlert(name) {
+
+    alert(
+        name +
+        " ainda não possui um link configurado.\n\n" +
+        "Em breve você poderá acessar diretamente por aqui."
+    );
+
+}
+
+
+/* =========================
+   ESC
+========================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeDownload();
+    }
+
+});
+
+
+/* =========================
+   MENU ATIVO
+========================= */
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 150;
+
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
