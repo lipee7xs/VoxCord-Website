@@ -1,9 +1,676 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <title>VoxCord</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VoxCord — Comunicação sem limites</title>
+
+  <meta name="description" content="VoxCord — comunicação, chamadas e transmissão em um só lugar.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #08090d;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Fundo */
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: rgba(88, 101, 242, 0.15);
+      filter: blur(120px);
+      border-radius: 50%;
+      top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      width: 100%;
+      padding: 22px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #7289da;
+    }
+
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+      margin-left: 28px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid rgba(114, 137, 218, 0.4);
+      border-radius: 30px;
+      background: rgba(114, 137, 218, 0.08);
+      color: #9caef5;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 9vw, 90px);
+      line-height: 0.95;
+      letter-spacing: -5px;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: #7289da;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #a5a7ad;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.25s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #7289da;
+      color: white;
+      box-shadow: 0 10px 35px rgba(114, 137, 218, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: #8299e8;
+    }
+
+    .btn-secondary {
+      background: #16181f;
+      border: 1px solid #292c36;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      border-color: #555b6e;
+    }
+
+    /* APP PREVIEW */
+
+    .preview {
+      width: min(1000px, 90%);
+      height: 430px;
+      margin: 30px auto 0;
+      border-radius: 18px;
+      border: 1px solid #292c36;
+      background: #111319;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .window-bar {
+      height: 42px;
+      background: #191b22;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #555;
+    }
+
+    .app {
+      display: flex;
+      height: calc(100% - 42px);
+    }
+
+    .servers {
+      width: 65px;
+      background: #0d0f14;
+      border-right: 1px solid #22252e;
+      padding: 12px;
+    }
+
+    .server {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: #7289da;
+      margin-bottom: 12px;
+    }
+
+    .server.small {
+      background: #272a34;
+    }
+
+    .channels {
+      width: 210px;
+      background: #15171e;
+      padding: 18px;
+    }
+
+    .channel-title {
+      font-size: 11px;
+      color: #777c88;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .channel {
+      padding: 9px;
+      color: #aeb1ba;
+      border-radius: 7px;
+      margin-bottom: 4px;
+    }
+
+    .channel.active {
+      background: #242833;
+      color: white;
+    }
+
+    .chat {
+      flex: 1;
+      padding: 25px;
+      background: #111319;
+    }
+
+    .chat-header {
+      font-weight: bold;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #252832;
+    }
+
+    .message {
+      margin-top: 22px;
+    }
+
+    .avatar {
+      width: 35px;
+      height: 35px;
+      background: #7289da;
+      border-radius: 50%;
+      float: left;
+      margin-right: 12px;
+    }
+
+    .message-name {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .message-text {
+      color: #a5a8b0;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 110px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 15px;
+      letter-spacing: -2px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #888c96;
+      max-width: 600px;
+      margin: auto auto 50px;
+      line-height: 1.6;
+    }
+
+    .features {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #111319;
+      border: 1px solid #242731;
+      padding: 30px;
+      border-radius: 16px;
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #444b62;
+    }
+
+    .icon {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: #898d97;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* DOWNLOAD */
+
+    .download {
+      text-align: center;
+    }
+
+    .download-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 60px 25px;
+      border-radius: 22px;
+      background: linear-gradient(
+        145deg,
+        #131722,
+        #0e1015
+      );
+      border: 1px solid #292d39;
+    }
+
+    .download-box h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .download-box p {
+      color: #8e929d;
+      margin-bottom: 30px;
+    }
+
+    .version {
+      margin-top: 15px;
+      color: #626773;
+      font-size: 12px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #20232b;
+      padding: 35px 7%;
+      text-align: center;
+      color: #666a74;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 20px;
+      }
+
+      nav .links {
+        display: none;
+      }
+
+      .preview {
+        height: 330px;
+      }
+
+      .channels {
+        width: 150px;
+      }
+
+      .servers {
+        width: 55px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 80px 20px;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
+
+      .download-box h2 {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 550px) {
+
+      .channels {
+        display: none;
+      }
+
+      .preview {
+        width: 95%;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>VoxCord</h1>
+
+  <nav>
+    <div class="logo">Vox<span>Cord</span></div>
+
+    <div class="links">
+      <a href="#recursos">Recursos</a>
+      <a href="#download">Download</a>
+    </div>
+  </nav>
+
+
+  <header class="hero">
+
+    <div class="hero-content">
+
+      <div class="badge">
+        ✦ O seu espaço para conversar
+      </div>
+
+      <h1>
+        Fale.<br>
+        <span>Conecte.</span>
+      </h1>
+
+      <p>
+        VoxCord é um espaço de comunicação criado para aproximar
+        pessoas, conversar por voz e compartilhar momentos juntos.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#download" class="btn btn-primary">
+          ↓ Baixar VoxCord
+        </a>
+
+        <a href="#recursos" class="btn btn-secondary">
+          Conhecer o VoxCord
+        </a>
+
+      </div>
+
+      <div class="preview">
+
+        <div class="window-bar">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+
+        <div class="app">
+
+          <div class="servers">
+            <div class="server"></div>
+            <div class="server small"></div>
+            <div class="server small"></div>
+          </div>
+
+          <div class="channels">
+
+            <div class="channel-title">
+              VOXCOR D
+            </div>
+
+            <div class="channel active">
+              # geral
+            </div>
+
+            <div class="channel">
+              # conversa
+            </div>
+
+            <div class="channel">
+              🔊 Sala de voz
+            </div>
+
+          </div>
+
+          <div class="chat">
+
+            <div class="chat-header">
+              # geral
+            </div>
+
+            <div class="message">
+
+              <div class="avatar"></div>
+
+              <div class="message-name">
+                VoxCord
+              </div>
+
+              <div class="message-text">
+                Bem-vindo ao VoxCord! 👋
+              </div>
+
+            </div>
+
+            <div class="message">
+
+              <div class="avatar"></div>
+
+              <div class="message-name">
+                Usuário
+              </div>
+
+              <div class="message-text">
+                Finalmente nosso próprio espaço. 🚀
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <section id="recursos">
+
+    <h2 class="section-title">
+      Tudo em um só lugar.
+    </h2>
+
+    <p class="section-subtitle">
+      Uma experiência simples para conversar, ficar em call,
+      compartilhar conteúdo e aproveitar seu tempo com quem importa.
+    </p>
+
+    <div class="features">
+
+      <div class="card">
+        <div class="icon">🎙️</div>
+        <h3>Chamadas de voz</h3>
+        <p>
+          Converse em tempo real com seus amigos através de
+          salas de voz.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📺</div>
+        <h3>Transmissão</h3>
+        <p>
+          Compartilhe sua tela e assista conteúdos junto com
+          outras pessoas.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Chats</h3>
+        <p>
+          Envie mensagens e mantenha suas conversas organizadas
+          em canais.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🖼️</div>
+        <h3>Mídia</h3>
+        <p>
+          Compartilhe imagens, vídeos, GIFs e outros conteúdos
+          diretamente nos chats.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">👥</div>
+        <h3>Comunidades</h3>
+        <p>
+          Crie seus próprios servidores e convide seus amigos
+          para participar.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Simples e rápido</h3>
+        <p>
+          Uma interface moderna pensada para tornar a comunicação
+          mais prática.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="download" id="download">
+
+    <div class="download-box">
+
+      <h2>
+        Pronto para entrar?
+      </h2>
+
+      <p>
+        Baixe o VoxCord e comece a conversar.
+      </p>
+
+      <!-- TROQUE O # PELO LINK DO SEU DOWNLOAD -->
+
+      <a href="#" class="btn btn-primary">
+        ↓ Baixar VoxCord
+      </a>
+
+      <div class="version">
+        VoxCord • Versão 1.0
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+
+    © 2026 VoxCord.
+    Feito para conectar pessoas.
+
+  </footer>
+
 </body>
-</html>
+        </html>
