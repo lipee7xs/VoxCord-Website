@@ -640,9 +640,9 @@ header{
     text-align:center;
 }
 
-/* Centraliza corretamente a mensagem da seção Contato */
 .contact .section-description{
-    margin:0 auto;
+    margin-left:auto;
+    margin-right:auto;
     text-align:center;
 }
 
@@ -656,6 +656,8 @@ header{
 
 .contact-card{
     min-width:170px;
+    display:block;
+    text-align:center;
     padding:15px 20px;
     border:1px solid rgba(128,103,255,.18);
     border-radius:9px;
@@ -1515,66 +1517,46 @@ footer{
             class="contact-card"
             href="https://github.com/lipee7xs"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
         >
-
-            <strong>
-                GitHub
-            </strong>
-
-            <span>
-                @lipee7xs
-            </span>
-
+            <img class="contact-card-icon" src="assets/github.png" alt="GitHub">
+            <strong>GitHub</strong>
+            <span>@lipee7xs</span>
         </a>
 
 
-        <button
+        <a
             class="contact-card"
-            onclick="showContact('Discord')"
+            href="https://discord.com/users/560321486200504321"
+            target="_blank"
+            rel="noopener noreferrer"
         >
-
-            <strong>
-                Discord
-            </strong>
-
-            <span>
-                Lipee7xs
-            </span>
-
-        </button>
+            <img class="contact-card-icon" src="assets/discord.png" alt="Discord">
+            <strong>Discord</strong>
+            <span>Lipee7xs</span>
+        </a>
 
 
-        <button
+        <a
             class="contact-card"
-            onclick="showContact('Instagram')"
+            href="https://www.instagram.com/lipezkjj/"
+            target="_blank"
+            rel="noopener noreferrer"
         >
-
-            <strong>
-                Instagram
-            </strong>
-
-            <span>
-                @lipee7xs
-            </span>
-
-        </button>
+            <img class="contact-card-icon" src="assets/instagram.png" alt="Instagram">
+            <strong>Instagram</strong>
+            <span>@lipezkjj</span>
+        </a>
 
 
-        <button
+        <a
             class="contact-card"
-            onclick="showContact('Email')"
+            href="mailto:voxcord.contato@gmail.com"
         >
-
-            <strong>
-                Email
-            </strong>
-
-            <span>
-                Contato
-            </span>
-
-        </button>
+            <img class="contact-card-icon" src="assets/email.png" alt="Email">
+            <strong>Email</strong>
+            <span>voxcord.contato@gmail.com</span>
+        </a>
 
 
     </div>
