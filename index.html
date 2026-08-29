@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>VoxCord — Fale. Conecte. Viva.</title>
-
 <meta name="description" content="VoxCord — comunicação simples, moderna e feita para conectar pessoas.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,147 +11,138 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "Inter", sans-serif;
+body{
+    font-family:"Inter",sans-serif;
     background:
-        radial-gradient(circle at 20% 15%, rgba(91, 38, 255, .10), transparent 30%),
-        radial-gradient(circle at 80% 30%, rgba(0, 153, 255, .08), transparent 28%),
+        radial-gradient(circle at 18% 14%,rgba(91,38,255,.11),transparent 30%),
+        radial-gradient(circle at 82% 30%,rgba(0,153,255,.08),transparent 28%),
         #05060c;
-    color: #fff;
-    overflow-x: hidden;
+    color:#fff;
+    overflow-x:hidden;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button {
-    font-family: inherit;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-/* =========================
-   FUNDO
-========================= */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
     background:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-    background-size: 70px 70px;
-    mask-image: linear-gradient(to bottom, black, transparent 80%);
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:70px 70px;
+    mask-image:linear-gradient(to bottom,#000,transparent 82%);
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+img{
+    max-width:100%;
+    display:block;
 }
 
 /* =========================
    HEADER
 ========================= */
 
-header {
-    height: 78px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-
-    background: rgba(4,5,12,.82);
-    backdrop-filter: blur(18px);
-
-    border-bottom: 1px solid rgba(255,255,255,.08);
+header{
+    height:78px;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(4,5,12,.86);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.navbar {
-    width: min(1450px, 92%);
-    height: 100%;
-    margin: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.navbar{
+    width:min(1450px,92%);
+    height:100%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.logo{
+    display:flex;
+    align-items:center;
 }
 
-.logo img {
-    width: 155px;
-    height: 48px;
-    object-fit: contain;
+.logo img{
+    width:155px;
+    height:48px;
+    object-fit:contain;
 }
 
-.nav-links {
-    display: flex;
-    gap: 36px;
-    align-items: center;
+.nav-links{
+    display:flex;
+    gap:36px;
+    align-items:center;
 }
 
-.nav-links a {
-    font-size: 14px;
-    color: #d7d7e5;
-    transition: .25s;
-    position: relative;
+.nav-links a{
+    font-size:14px;
+    color:#d7d7e5;
+    transition:.25s;
+    position:relative;
 }
 
-.nav-links a:hover {
-    color: white;
+.nav-links a:hover,
+.nav-links a.active{
+    color:#fff;
 }
 
-.nav-links a.active::after {
-    content: "";
-    position: absolute;
-    height: 2px;
-    left: 0;
-    right: 0;
-    bottom: -12px;
-
-    background: linear-gradient(90deg,#a52cff,#317cff);
-    box-shadow: 0 0 12px #783cff;
+.nav-links a.active::after{
+    content:"";
+    position:absolute;
+    height:2px;
+    left:0;
+    right:0;
+    bottom:-12px;
+    background:linear-gradient(90deg,#a52cff,#317cff);
+    box-shadow:0 0 12px #783cff;
 }
 
-.nav-download {
-    border: 0;
-    cursor: pointer;
-
-    padding: 12px 21px;
-    border-radius: 9px;
-
-    color: white;
-    font-weight: 600;
-
-    background: linear-gradient(100deg,#a82cff,#285fff);
-
+.nav-download,
+.btn-primary,
+.platform:not(.soon) button{
+    border:0;
+    cursor:pointer;
+    color:#fff;
+    font-weight:600;
+    background:linear-gradient(100deg,#a82cff,#285fff);
     box-shadow:
         0 0 22px rgba(126,48,255,.38),
         inset 0 0 0 1px rgba(255,255,255,.18);
-
-    transition: .25s;
+    transition:.25s;
 }
 
-.nav-download:hover {
-    transform: translateY(-2px);
+.nav-download{
+    padding:12px 21px;
+    border-radius:9px;
+}
+
+.nav-download:hover,
+.btn-primary:hover,
+.platform:not(.soon) button:hover{
+    transform:translateY(-2px);
     box-shadow:
         0 0 30px rgba(126,48,255,.58),
         inset 0 0 0 1px rgba(255,255,255,.25);
@@ -163,519 +152,461 @@ header {
    HERO
 ========================= */
 
-.hero {
-    min-height: 700px;
-    padding-top: 78px;
-
-    display: flex;
-    align-items: center;
-
-    border-bottom: 1px solid rgba(255,255,255,.07);
-
-    position: relative;
-    overflow: hidden;
+.hero{
+    min-height:700px;
+    padding-top:78px;
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    position:relative;
+    overflow:hidden;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-
-    width: 700px;
-    height: 500px;
-
-    left: 28%;
-    top: 80px;
-
-    background: radial-gradient(
-        ellipse,
-        rgba(78, 35, 255, .34),
-        rgba(15, 75, 255, .12),
-        transparent 70%
-    );
-
-    filter: blur(45px);
-    pointer-events: none;
+.hero::before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:500px;
+    left:28%;
+    top:80px;
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(78,35,255,.34),
+            rgba(15,75,255,.12),
+            transparent 70%
+        );
+    filter:blur(45px);
+    pointer-events:none;
 }
 
-.hero-inner {
-    width: min(1450px, 92%);
-    margin: auto;
-
-    display: grid;
-    grid-template-columns: 42% 58%;
-    align-items: center;
-
-    position: relative;
-    z-index: 2;
+.hero-inner{
+    width:min(1450px,92%);
+    margin:auto;
+    display:grid;
+    grid-template-columns:42% 58%;
+    align-items:center;
+    position:relative;
+    z-index:2;
 }
 
-.hero-text {
-    padding-right: 30px;
+.hero-text{
+    padding-right:30px;
 }
 
-.badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    padding: 8px 13px;
-
-    border: 1px solid rgba(150,90,255,.35);
-    border-radius: 8px;
-
-    background: rgba(80,35,170,.12);
-
-    font-size: 12px;
-    color: #eee;
-    margin-bottom: 22px;
-
-    box-shadow: 0 0 18px rgba(120,50,255,.12);
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border:1px solid rgba(150,90,255,.35);
+    border-radius:8px;
+    background:rgba(80,35,170,.12);
+    font-size:12px;
+    color:#eee;
+    margin-bottom:22px;
+    box-shadow:0 0 18px rgba(120,50,255,.12);
 }
 
-.hero h1 {
-    font-size: clamp(48px, 5vw, 76px);
-    line-height: 1.03;
-    letter-spacing: -3px;
-    margin-bottom: 22px;
+.badge img{
+    width:18px;
+    height:18px;
+    object-fit:contain;
 }
 
-.gradient {
-    background: linear-gradient(
-        100deg,
-        #b32cff,
-        #7d45ff,
-        #168cff
-    );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.hero h1{
+    font-size:clamp(48px,5vw,76px);
+    line-height:1.03;
+    letter-spacing:-3px;
+    margin-bottom:22px;
 }
 
-.hero-description {
-    max-width: 540px;
-    color: #c5c5d2;
-    line-height: 1.75;
-    font-size: 15px;
+.gradient{
+    background:linear-gradient(100deg,#b32cff,#7d45ff,#168cff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
 }
 
-.hero-buttons {
-    display: flex;
-    gap: 14px;
-    margin-top: 28px;
+.hero-description{
+    max-width:540px;
+    color:#c5c5d2;
+    line-height:1.75;
+    font-size:15px;
 }
 
-.btn {
-    padding: 14px 23px;
-    border-radius: 9px;
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    cursor: pointer;
-
-    font-weight: 600;
-    color: white;
-
-    transition: .25s;
+.hero-buttons{
+    display:flex;
+    gap:14px;
+    margin-top:28px;
 }
 
-.btn-primary {
-    background: linear-gradient(100deg,#a72aff,#236cff);
-    box-shadow: 0 0 25px rgba(113,43,255,.38);
+.btn{
+    padding:14px 23px;
+    border-radius:9px;
+    border:1px solid rgba(255,255,255,.12);
+    cursor:pointer;
+    font-weight:600;
+    color:#fff;
+    transition:.25s;
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 35px rgba(113,43,255,.58);
+.btn-primary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.btn-secondary {
-    background: rgba(255,255,255,.025);
+.btn-secondary{
+    background:rgba(255,255,255,.025);
 }
 
-.btn-secondary:hover {
-    background: rgba(255,255,255,.07);
+.btn-secondary:hover{
+    background:rgba(255,255,255,.07);
+    transform:translateY(-2px);
 }
 
 /* =========================
    HERO VISUAL
 ========================= */
 
-.hero-visual {
-    height: 560px;
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.hero-visual{
+    height:560px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.hero-visual::before {
-    content: "";
-    position: absolute;
-
-    width: 550px;
-    height: 420px;
-
-    background: radial-gradient(
-        ellipse,
-        rgba(123,36,255,.33),
-        rgba(0,120,255,.15),
-        transparent 70%
-    );
-
-    filter: blur(35px);
+.hero-visual::before{
+    content:"";
+    position:absolute;
+    width:550px;
+    height:420px;
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(123,36,255,.33),
+            rgba(0,120,255,.15),
+            transparent 70%
+        );
+    filter:blur(35px);
 }
 
-.app-preview {
-    width: 650px;
-    max-width: 95%;
-
-    border-radius: 18px;
-
-    position: relative;
-    z-index: 2;
-
+.app-preview{
+    width:650px;
+    max-width:95%;
+    border-radius:18px;
+    position:relative;
+    z-index:2;
     filter:
         drop-shadow(0 0 20px rgba(107,55,255,.55))
         drop-shadow(0 0 45px rgba(0,114,255,.25));
-
-    transform: perspective(1000px) rotateY(-2deg);
-
-    transition: .4s;
+    transform:perspective(1000px) rotateY(-2deg);
+    transition:.4s;
 }
 
-.app-preview:hover {
-    transform:
-        perspective(1000px)
-        rotateY(0deg)
-        translateY(-5px);
+.app-preview:hover{
+    transform:perspective(1000px) rotateY(0) translateY(-5px);
 }
 
-.mascot {
-    position: absolute;
-
-    width: 245px;
-    height: 330px;
-
-    object-fit: contain;
-
-    left: 6%;
-    bottom: 5px;
-
-    z-index: 4;
-
+.mascot{
+    position:absolute;
+    width:245px;
+    height:330px;
+    object-fit:contain;
+    left:5%;
+    bottom:2px;
+    z-index:4;
     filter:
         drop-shadow(0 0 12px rgba(151,42,255,.55))
         drop-shadow(0 0 25px rgba(32,100,255,.35));
-
-    animation: mascotFloat 4s ease-in-out infinite;
+    animation:mascotFloat 4s ease-in-out infinite;
 }
 
-@keyframes mascotFloat {
-    0%,100% {
-        transform: translateY(0);
+@keyframes mascotFloat{
+    0%,100%{
+        transform:translateY(0);
     }
 
-    50% {
-        transform: translateY(-9px);
+    50%{
+        transform:translateY(-9px);
     }
 }
 
 /* =========================
-   BENEFÍCIOS
+   BENEFITS
 ========================= */
 
-.benefits {
-    width: min(1450px,92%);
-    margin: auto;
-
-    display: flex;
-    gap: 45px;
-
-    padding: 25px 0 35px;
+.benefits{
+    width:min(1450px,92%);
+    margin:auto;
+    display:flex;
+    gap:45px;
+    padding:25px 0 35px;
 }
 
-.benefit {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    color: #d9d9e5;
-    font-size: 13px;
+.benefit{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#d9d9e5;
+    font-size:13px;
 }
 
-.benefit-icon {
-    color: #a735ff;
-    font-size: 20px;
+.benefit-icon{
+    width:27px;
+    height:27px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 8px rgba(139,57,255,.6));
 }
 
 /* =========================
    SECTIONS
 ========================= */
 
-.section {
-    padding: 90px 0;
-
-    border-bottom: 1px solid rgba(255,255,255,.07);
+.section{
+    padding:90px 0;
+    border-bottom:1px solid rgba(255,255,255,.07);
 }
 
-.container {
-    width: min(1450px,92%);
-    margin: auto;
+.container{
+    width:min(1450px,92%);
+    margin:auto;
 }
 
-.section-label {
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #ad7aff;
-    margin-bottom: 12px;
+.section-label{
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:#ad7aff;
+    margin-bottom:12px;
 }
 
-.section-title {
-    font-size: 32px;
-    margin-bottom: 14px;
+.section-title{
+    font-size:32px;
+    margin-bottom:14px;
 }
 
-.section-description {
-    color: #b9b9c8;
-    max-width: 600px;
-    line-height: 1.7;
+.section-description{
+    color:#b9b9c8;
+    max-width:600px;
+    line-height:1.7;
 }
 
 /* =========================
    SOBRE
 ========================= */
 
-.about {
-    display: grid;
-    grid-template-columns: 45% 55%;
-    align-items: center;
-    gap: 40px;
+.about{
+    display:grid;
+    grid-template-columns:45% 55%;
+    align-items:center;
+    gap:40px;
 }
 
-.about-text {
-    padding-left: 10px;
+.about-text{
+    padding-left:10px;
 }
 
-.about-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    min-height: 330px;
+.about-visual{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:330px;
 }
 
-.about-visual img {
-    width: 500px;
-    max-width: 100%;
-
-    object-fit: contain;
-
+.about-visual img{
+    width:500px;
+    max-width:100%;
+    object-fit:contain;
     filter:
         drop-shadow(0 0 25px rgba(116,38,255,.5))
         drop-shadow(0 0 50px rgba(20,80,255,.18));
 }
 
-/* =========================
-   CARDS
-========================= */
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 12px;
-    margin-top: 35px;
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:35px;
 }
 
-.card {
-    min-height: 125px;
-
-    padding: 20px;
-
-    border: 1px solid rgba(128,103,255,.18);
-    border-radius: 10px;
-
+.card{
+    min-height:155px;
+    padding:20px;
+    border:1px solid rgba(128,103,255,.18);
+    border-radius:10px;
     background:
         linear-gradient(
             145deg,
             rgba(44,27,85,.24),
             rgba(9,12,25,.65)
         );
-
-    transition: .3s;
+    transition:.3s;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-
-    border-color: rgba(143,80,255,.55);
-
-    box-shadow:
-        0 0 25px rgba(119,50,255,.13);
+.card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(143,80,255,.55);
+    box-shadow:0 0 25px rgba(119,50,255,.13);
 }
 
-.card-icon {
-    font-size: 26px;
-    margin-bottom: 12px;
-
-    background: linear-gradient(120deg,#be37ff,#1f8cff);
-    -webkit-background-clip: text;
-    color: transparent;
+.card-icon{
+    width:66px;
+    height:66px;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.card h3 {
-    font-size: 14px;
-    margin-bottom: 8px;
+.card-icon img{
+    width:62px;
+    height:62px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 10px rgba(105,55,255,.65));
 }
 
-.card p {
-    font-size: 11px;
-    color: #a6a6b7;
-    line-height: 1.6;
+.card h3{
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+.card p{
+    font-size:11px;
+    color:#a6a6b7;
+    line-height:1.6;
 }
 
 /* =========================
    RECURSOS
 ========================= */
 
-.resources {
-    text-align: center;
+.resources{
+    text-align:center;
 }
 
-.resources .section-description {
-    margin: auto;
+.resources .section-description{
+    margin:auto;
 }
 
-.resource-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 14px;
-
-    margin-top: 40px;
+.resource-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:40px;
 }
 
-.resource-card {
-    padding: 28px 20px;
-
-    min-height: 155px;
-
-    border: 1px solid rgba(128,103,255,.18);
-    border-radius: 10px;
-
-    background: rgba(9,10,20,.75);
-
-    transition: .3s;
+.resource-card{
+    padding:25px 20px;
+    min-height:175px;
+    border:1px solid rgba(128,103,255,.18);
+    border-radius:10px;
+    background:rgba(9,10,20,.75);
+    transition:.3s;
 }
 
-.resource-card:hover {
-    transform: translateY(-4px);
-
-    border-color: rgba(160,70,255,.55);
-
-    box-shadow: 0 0 30px rgba(116,39,255,.12);
+.resource-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(160,70,255,.55);
+    box-shadow:0 0 30px rgba(116,39,255,.12);
 }
 
-.resource-icon {
-    font-size: 34px;
-    margin-bottom: 15px;
-
-    background: linear-gradient(120deg,#b731ff,#1591ff);
-    -webkit-background-clip: text;
-    color: transparent;
+.resource-icon{
+    width:78px;
+    height:78px;
+    margin:0 auto 14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.resource-card h3 {
-    font-size: 14px;
-    margin-bottom: 9px;
+.resource-icon img{
+    width:76px;
+    height:76px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 12px rgba(105,55,255,.65));
 }
 
-.resource-card p {
-    font-size: 11px;
-    line-height: 1.6;
-    color: #a7a7b8;
+.resource-card h3{
+    font-size:14px;
+    margin-bottom:9px;
+}
+
+.resource-card p{
+    font-size:11px;
+    line-height:1.6;
+    color:#a7a7b8;
 }
 
 /* =========================
    DOWNLOAD
 ========================= */
 
-.download-section {
-    text-align: center;
+.download-section{
+    text-align:center;
 }
 
-.platforms {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-
-    gap: 14px;
-
-    margin: 40px auto 15px;
-
-    max-width: 900px;
+.platforms{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:40px auto 15px;
+    max-width:900px;
 }
 
-.platform {
-    padding: 24px;
-
-    border-radius: 10px;
-
-    border: 1px solid rgba(128,103,255,.18);
-
-    background: rgba(9,10,20,.75);
-
-    text-align: left;
+.platform{
+    padding:24px;
+    border-radius:10px;
+    border:1px solid rgba(128,103,255,.18);
+    background:rgba(9,10,20,.75);
+    text-align:left;
 }
 
-.platform-icon {
-    font-size: 30px;
-    margin-bottom: 12px;
+.platform-icon{
+    width:60px;
+    height:60px;
+    margin-bottom:12px;
 }
 
-.platform h3 {
-    font-size: 15px;
+.platform-icon img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
 }
 
-.platform p {
-    font-size: 11px;
-    color: #9999aa;
-    margin: 5px 0 17px;
+.platform h3{
+    font-size:15px;
 }
 
-.platform button {
-    width: 100%;
-    padding: 9px;
-
-    border-radius: 6px;
-
-    background: linear-gradient(100deg,#702cff,#2075ff);
-
-    color: white;
-
-    border: 0;
-
-    cursor: pointer;
+.platform p{
+    font-size:11px;
+    color:#9999aa;
+    margin:5px 0 17px;
 }
 
-.platform.soon button {
-    background: rgba(255,255,255,.035);
-    border: 1px solid rgba(255,255,255,.1);
-    color: #aaa;
-    cursor: default;
+.platform button{
+    width:100%;
+    padding:9px;
+    border-radius:6px;
 }
 
-.ios {
-    max-width: 700px;
-    margin: 15px auto 0;
+.platform.soon button{
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.1);
+    color:#aaa;
+    cursor:not-allowed;
+    box-shadow:none;
+}
 
-    padding: 20px;
-
-    border: 1px solid rgba(168,70,255,.4);
-    border-radius: 10px;
-
-    text-align: left;
-
+.ios{
+    max-width:700px;
+    margin:15px auto 0;
+    padding:20px;
+    border:1px solid rgba(168,70,255,.4);
+    border-radius:10px;
+    text-align:left;
     background:
         linear-gradient(
             100deg,
@@ -684,910 +615,1293 @@ header {
         );
 }
 
-.ios h3 {
-    margin-bottom: 5px;
+.ios-icon{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    float:left;
+    margin-right:14px;
 }
 
-.ios p {
-    font-size: 12px;
-    color: #aaa;
+.ios h3{
+    margin-bottom:5px;
+}
+
+.ios p{
+    font-size:12px;
+    color:#aaa;
 }
 
 /* =========================
    CONTATO
 ========================= */
 
-.contact {
-    text-align: center;
+.contact{
+    text-align:center;
 }
 
-.contact-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    gap: 12px;
-
-    margin-top: 30px;
+.contact-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:30px;
 }
 
-.contact-card {
-    min-width: 170px;
-
-    padding: 15px 20px;
-
-    border: 1px solid rgba(128,103,255,.18);
-    border-radius: 9px;
-
-    background: rgba(9,10,20,.75);
-
-    transition: .25s;
+.contact-card{
+    min-width:170px;
+    padding:15px 20px;
+    border:1px solid rgba(128,103,255,.18);
+    border-radius:9px;
+    background:rgba(9,10,20,.75);
+    transition:.25s;
 }
 
-.contact-card:hover {
-    border-color: rgba(146,65,255,.55);
-    transform: translateY(-3px);
+.contact-card:hover{
+    border-color:rgba(146,65,255,.55);
+    transform:translateY(-3px);
 }
 
-.contact-card strong {
-    display: block;
-    font-size: 13px;
-    margin-bottom: 4px;
+.contact-card-icon{
+    width:30px;
+    height:30px;
+    object-fit:contain;
+    margin:0 auto 8px;
 }
 
-.contact-card span {
-    font-size: 11px;
-    color: #9292a3;
+.contact-card strong{
+    display:block;
+    font-size:13px;
+    margin-bottom:4px;
+}
+
+.contact-card span{
+    font-size:11px;
+    color:#9292a3;
 }
 
 /* =========================
    FOOTER
 ========================= */
 
-footer {
-    padding: 50px 0;
-
-    border-top: 1px solid rgba(130,70,255,.22);
-
-    background: #04050a;
+footer{
+    padding:50px 0;
+    border-top:1px solid rgba(130,70,255,.22);
+    background:#04050a;
 }
 
-.footer-inner {
-    width: min(1450px,92%);
-    margin: auto;
-
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-
-    gap: 40px;
+.footer-inner{
+    width:min(1450px,92%);
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
 }
 
-.footer-logo img {
-    width: 150px;
-    margin-bottom: 15px;
+.footer-logo img{
+    width:150px;
+    margin-bottom:15px;
 }
 
-.footer-main p {
-    font-size: 12px;
-    color: #a0a0ae;
-    max-width: 300px;
-    line-height: 1.6;
+.footer-main p{
+    font-size:12px;
+    color:#a0a0ae;
+    max-width:300px;
+    line-height:1.6;
 }
 
-.footer-column h4 {
-    font-size: 12px;
-    margin-bottom: 15px;
+.footer-column h4{
+    font-size:12px;
+    margin-bottom:15px;
 }
 
-.footer-column a {
-    display: block;
-
-    font-size: 11px;
-    color: #898995;
-
-    margin-bottom: 9px;
-
-    transition: .2s;
+.footer-column a{
+    display:block;
+    font-size:11px;
+    color:#898995;
+    margin-bottom:9px;
+    transition:.2s;
 }
 
-.footer-column a:hover {
-    color: #b66cff;
+.footer-column a:hover{
+    color:#b66cff;
 }
 
-.copyright {
-    margin-top: 30px;
-
-    font-size: 10px;
-    color: #666675;
+.copyright{
+    margin-top:30px;
+    font-size:10px;
+    color:#666675;
 }
 
 /* =========================
-   MODAL DOWNLOAD
+   MODAIS
 ========================= */
 
-.modal {
-    position: fixed;
-    inset: 0;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(0,0,0,.75);
-
-    backdrop-filter: blur(8px);
-
-    z-index: 3000;
+.modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(10px);
+    z-index:5000;
+    padding:20px;
 }
 
-.modal.active {
-    display: flex;
+.modal.active{
+    display:flex;
 }
 
-.modal-box {
-    width: min(430px,90%);
-
-    padding: 35px;
-
-    border-radius: 15px;
-
-    border: 1px solid rgba(143,73,255,.45);
-
+.modal-box{
+    width:min(460px,100%);
+    padding:35px;
+    border:1px solid rgba(150,75,255,.45);
+    border-radius:16px;
     background:
         linear-gradient(
             145deg,
-            #111127,
-            #080912
+            rgba(25,18,50,.98),
+            rgba(6,8,18,.98)
         );
-
     box-shadow:
-        0 0 60px rgba(100,40,255,.25);
-
-    text-align: center;
+        0 0 60px rgba(111,36,255,.25),
+        inset 0 0 25px rgba(90,50,255,.05);
+    text-align:center;
 }
 
-.modal-box img {
-    width: 80px;
-    margin: 0 auto 20px;
+.modal-box img{
+    width:90px;
+    height:90px;
+    object-fit:contain;
+    margin:0 auto 20px;
+    filter:
+        drop-shadow(0 0 15px rgba(130,45,255,.7));
 }
 
-.modal-box h2 {
-    margin-bottom: 12px;
+.modal-box h2{
+    margin-bottom:12px;
 }
 
-.modal-box p {
-    color: #aaaabb;
-    font-size: 13px;
-    line-height: 1.6;
+.modal-box p{
+    color:#aaaabc;
+    line-height:1.7;
+    font-size:13px;
 }
 
-.close-modal {
-    margin-top: 22px;
-
-    border: 0;
-
-    padding: 10px 22px;
-
-    border-radius: 7px;
-
-    background: linear-gradient(100deg,#9e2cff,#2671ff);
-
-    color: white;
-
-    cursor: pointer;
+.close-modal{
+    margin-top:25px;
+    padding:11px 25px;
+    border:0;
+    border-radius:8px;
+    color:#fff;
+    cursor:pointer;
+    font-weight:600;
+    background:linear-gradient(100deg,#a82cff,#285fff);
+    box-shadow:0 0 20px rgba(126,48,255,.35);
 }
 
 /* =========================
-   MOBILE
+   RESPONSIVO
 ========================= */
 
-@media(max-width:1000px) {
+@media(max-width:1100px){
 
-    .nav-links {
-        display: none;
+    .nav-links{
+        gap:20px;
     }
 
-    .hero-inner {
-        grid-template-columns: 1fr;
+    .hero-inner{
+        grid-template-columns:1fr;
     }
 
-    .hero {
-        padding-top: 120px;
+    .hero-text{
+        text-align:center;
+        padding-right:0;
     }
 
-    .hero-text {
-        text-align: center;
-        padding: 0;
+    .hero-description{
+        margin:auto;
     }
 
-    .hero-description {
-        margin: auto;
+    .hero-buttons{
+        justify-content:center;
     }
 
-    .hero-buttons {
-        justify-content: center;
+    .hero-visual{
+        margin-top:20px;
     }
 
-    .hero-visual {
-        height: 430px;
+    .mascot{
+        left:8%;
     }
 
-    .mascot {
-        width: 170px;
-        height: 230px;
-        left: 0;
-        bottom: 0;
+    .about{
+        grid-template-columns:1fr;
     }
 
-    .app-preview {
-        width: 600px;
+    .about-text{
+        padding-left:0;
     }
 
-    .about {
-        grid-template-columns: 1fr;
+    .about-visual{
+        order:-1;
     }
-
-    .about-text {
-        text-align: center;
-        padding: 0;
-    }
-
-    .section-description {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .cards {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .resource-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .platforms {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-inner {
-        grid-template-columns: 1fr 1fr;
-    }
-
 }
 
-@media(max-width:600px) {
+@media(max-width:800px){
 
-    .navbar {
-        width: 90%;
+    header{
+        height:70px;
     }
 
-    .logo img {
-        width: 125px;
+    .navbar{
+        width:94%;
     }
 
-    .nav-download {
-        padding: 10px 13px;
-        font-size: 11px;
+    .logo img{
+        width:125px;
     }
 
-    .hero h1 {
-        font-size: 43px;
-        letter-spacing: -2px;
+    .nav-links{
+        display:none;
     }
 
-    .hero-visual {
-        height: 350px;
+    .nav-download{
+        padding:10px 14px;
+        font-size:12px;
     }
 
-    .mascot {
-        width: 130px;
-        height: 190px;
-        left: -10px;
+    .hero{
+        padding-top:70px;
     }
 
-    .benefits {
-        flex-wrap: wrap;
-        gap: 15px 25px;
+    .hero h1{
+        font-size:44px;
+        letter-spacing:-2px;
+    }
+
+    .hero-visual{
+        height:430px;
+    }
+
+    .app-preview{
+        width:95%;
+    }
+
+    .mascot{
+        width:155px;
+        height:210px;
+        left:0;
+        bottom:0;
+    }
+
+    .benefits{
+        flex-wrap:wrap;
+        gap:18px;
+        justify-content:center;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .resource-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .platforms{
+        grid-template-columns:1fr;
+        max-width:420px;
+    }
+
+    .footer-inner{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:520px){
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero-description{
+        font-size:14px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .hero-visual{
+        height:330px;
+    }
+
+    .mascot{
+        width:115px;
+        height:160px;
     }
 
     .cards,
-    .resource-grid {
-        grid-template-columns: 1fr;
+    .resource-grid{
+        grid-template-columns:1fr;
     }
 
-    .footer-inner {
-        grid-template-columns: 1fr;
+    .section{
+        padding:65px 0;
     }
 
-    .contact-links {
-        flex-direction: column;
+    .section-title{
+        font-size:28px;
     }
 
-    .contact-card {
-        width: 100%;
+    .footer-inner{
+        grid-template-columns:1fr;
     }
 
+    .contact-card{
+        width:100%;
+    }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
+<div class="navbar">
 
-<nav class="navbar">
+    <a href="#inicio" class="logo">
+        <img src="assets/logo_voxcord_com_nome.png" alt="VoxCord">
+    </a>
 
-<a href="#inicio" class="logo">
-    <img src="assets/logo_voxcord_com_nome.png" alt="VoxCord">
-</a>
+    <nav class="nav-links">
+        <a href="#inicio" class="active">Início</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#download">Download</a>
+        <a href="#contato">Contato</a>
+    </nav>
 
-<div class="nav-links">
-
-<a href="#inicio" class="active">Início</a>
-<a href="#recursos">Recursos</a>
-<a href="#sobre">Sobre</a>
-<a href="#download">Download</a>
-<a href="#contato">Contato</a>
+    <a href="#download" class="nav-download">
+        ↓ &nbsp; Baixar Agora
+    </a>
 
 </div>
-
-<button class="nav-download" onclick="openDownload()">
-    ↓ &nbsp; Baixar Agora
-</button>
-
-</nav>
-
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero" id="inicio">
 
 <div class="hero-inner">
 
-<div class="hero-text">
+    <div class="hero-text">
 
-<div class="badge">
-    🦊 &nbsp; Seu espaço. Suas pessoas.
-</div>
+        <div class="badge">
+            <img src="assets/logo_voxcord.png" alt="">
+            Seu espaço. Suas pessoas.
+        </div>
 
-<h1>
-    Fale.
-    <span class="gradient">Conecte.</span>
-    <br>
-    Viva o <span class="gradient">VoxCord.</span>
-</h1>
+        <h1>
+            Fale.
+            <span class="gradient">Conecte.</span><br>
+            Viva o <span class="gradient">VoxCord.</span>
+        </h1>
 
-<p class="hero-description">
-    O VoxCord é mais que um chat. É onde comunidades se unem,
-    amizades acontecem e momentos são compartilhados em tempo real.
-</p>
+        <p class="hero-description">
+            O VoxCord é mais que um chat. É onde comunidades
+            se unem, amizades acontecem e momentos são
+            compartilhados em tempo real.
+        </p>
 
-<div class="hero-buttons">
+        <div class="hero-buttons">
 
-<button class="btn btn-primary" onclick="openDownload()">
-    ↓ &nbsp; Baixar VoxCord
-</button>
+            <a href="#download" class="btn btn-primary">
+                ↓ &nbsp; Baixar VoxCord
+            </a>
 
-<a href="#sobre" class="btn btn-secondary">
-    Conhecer mais
-</a>
+            <a href="#sobre" class="btn btn-secondary">
+                Conhecer mais
+            </a>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 
-<div class="hero-visual">
+    <div class="hero-visual">
 
-<img
-    class="app-preview"
-    src="assets/print_tela_inicial_voxcord.png"
-    alt="Interface do VoxCord"
->
+        <img
+            class="app-preview"
+            src="assets/print_tela_inicial_voxcord.png"
+            alt="Interface do VoxCord"
+        >
 
-<img
-    class="mascot"
-    src="assets/mascote_voxcord.png"
-    alt="Mascote VoxCord"
->
+        <img
+            class="mascot"
+            src="assets/mascote_voxcord.png"
+            alt="Mascote VoxCord"
+        >
 
-</div>
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- ================= BENEFÍCIOS ================= -->
+<!-- =========================
+     BENEFÍCIOS
+========================= -->
 
 <div class="benefits">
 
-<div class="benefit">
-    <span class="benefit-icon">♧</span>
-    Grátis para sempre
+    <div class="benefit">
+        <img class="benefit-icon" src="assets/rapido.png" alt="">
+        Grátis para sempre
+    </div>
+
+    <div class="benefit">
+        <img class="benefit-icon" src="assets/leve.png" alt="">
+        Leve e rápido
+    </div>
+
+    <div class="benefit">
+        <img class="benefit-icon" src="assets/seguro.png" alt="">
+        Seguro e confiável
+    </div>
+
 </div>
 
-<div class="benefit">
-    <span class="benefit-icon">ϟ</span>
-    Leve e rápido
-</div>
 
-<div class="benefit">
-    <span class="benefit-icon">♢</span>
-    Seguro e confiável
-</div>
-
-</div>
-
-
-<!-- ================= SOBRE ================= -->
+<!-- =========================
+     SOBRE
+========================= -->
 
 <section class="section" id="sobre">
 
 <div class="container">
 
-<div class="about">
+    <div class="about">
 
-<div class="about-text">
+        <div class="about-text">
 
-<div class="section-label">
-    Sobre o VoxCord
-</div>
+            <div class="section-label">
+                Sobre o VoxCord
+            </div>
 
-<h2 class="section-title">
-    O que é o VoxCord?
-</h2>
+            <h2 class="section-title">
+                O que é o VoxCord?
+            </h2>
 
-<p class="section-description">
-    O VoxCord é uma plataforma de comunicação feita para todos.
-    Nosso objetivo é oferecer uma experiência leve, moderna e completa,
-    seja para conversar com amigos ou criar grandes comunidades.
-</p>
-
-<div class="cards">
-
-<div class="card">
-    <div class="card-icon">✦</div>
-    <h3>Rápido</h3>
-    <p>Conexão instantânea e sem complicações.</p>
-</div>
-
-<div class="card">
-    <div class="card-icon">♢</div>
-    <h3>Seguro</h3>
-    <p>Seus dados protegidos com criptografia.</p>
-</div>
-
-<div class="card">
-    <div class="card-icon">♨</div>
-    <h3>Leve</h3>
-    <p>Baixo consumo de recursos do sistema.</p>
-</div>
-
-<div class="card">
-    <div class="card-icon">⌘</div>
-    <h3>Moderno</h3>
-    <p>Interface bonita, limpa e fácil de usar.</p>
-</div>
-
-</div>
-
-</div>
+            <p class="section-description">
+                O VoxCord é uma plataforma de comunicação feita para todos.
+                Nosso objetivo é oferecer uma experiência leve, moderna e completa,
+                seja para conversar com amigos ou criar grandes comunidades.
+            </p>
 
 
-<div class="about-visual">
+            <div class="cards">
 
-<img
-    src="assets/logo_voxcord.png"
-    alt="Logo VoxCord"
->
+                <div class="card">
 
-</div>
+                    <div class="card-icon">
+                        <img src="assets/rapido.png" alt="Rápido">
+                    </div>
 
-</div>
+                    <h3>Rápido</h3>
+
+                    <p>
+                        Conexão instantânea e sem complicações.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        <img src="assets/seguro.png" alt="Seguro">
+                    </div>
+
+                    <h3>Seguro</h3>
+
+                    <p>
+                        Seus dados protegidos com criptografia.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        <img src="assets/leve.png" alt="Leve">
+                    </div>
+
+                    <h3>Leve</h3>
+
+                    <p>
+                        Baixo consumo de recursos do sistema.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        <img src="assets/moderno.png" alt="Moderno">
+                    </div>
+
+                    <h3>Moderno</h3>
+
+                    <p>
+                        Interface bonita, limpa e fácil de usar.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-visual">
+
+            <img
+                src="assets/logo_voxcord.png"
+                alt="Logo VoxCord"
+            >
+
+        </div>
+
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- ================= RECURSOS ================= -->
+<!-- =========================
+     RECURSOS
+========================= -->
 
 <section class="section resources" id="recursos">
 
 <div class="container">
 
-<div class="section-label">
-    Recursos
-</div>
+    <div class="section-label">
+        Recursos
+    </div>
 
-<h2 class="section-title">
-    Tudo que você precisa<br>
-    em um só lugar
-</h2>
+    <h2 class="section-title">
+        Tudo que você precisa<br>
+        em um só lugar
+    </h2>
 
-<p class="section-description">
-    Recursos feitos para aproximar pessoas e facilitar
-    a comunicação de verdade.
-</p>
+    <p class="section-description">
+        Recursos feitos para aproximar pessoas e facilitar
+        a comunicação de verdade.
+    </p>
 
 
-<div class="resource-grid">
+    <div class="resource-grid">
 
-<div class="resource-card">
-    <div class="resource-icon">▢</div>
-    <h3>Chats em Tempo Real</h3>
-    <p>Converse instantaneamente com sua comunidade.</p>
-</div>
 
-<div class="resource-card">
-    <div class="resource-icon">♬</div>
-    <h3>Chamadas de Voz</h3>
-    <p>Áudio de alta qualidade sem travamentos.</p>
-</div>
+        <div class="resource-card">
 
-<div class="resource-card">
-    <div class="resource-icon">▣</div>
-    <h3>Compartilhamento de Tela</h3>
-    <p>Transmita sua tela com facilidade e segurança.</p>
-</div>
+            <div class="resource-icon">
+                <img
+                    src="assets/chats_em_tempo_real.png"
+                    alt="Chats em Tempo Real"
+                >
+            </div>
 
-<div class="resource-card">
-    <div class="resource-icon">♙</div>
-    <h3>Bots e Integrações</h3>
-    <p>Adicione bots e personalize seu servidor.</p>
-</div>
+            <h3>
+                Chats em Tempo Real
+            </h3>
 
-<div class="resource-card">
-    <div class="resource-icon">#</div>
-    <h3>Canais Organizados</h3>
-    <p>Mantenha tudo separado e organizado.</p>
-</div>
+            <p>
+                Converse instantaneamente com sua comunidade.
+            </p>
 
-<div class="resource-card">
-    <div class="resource-icon">♧</div>
-    <h3>Comunidades Ativas</h3>
-    <p>Crie laços, faça amigos e participe.</p>
-</div>
+        </div>
 
-</div>
+
+        <div class="resource-card">
+
+            <div class="resource-icon">
+                <img
+                    src="assets/chamadas_de_voz.png"
+                    alt="Chamadas de Voz"
+                >
+            </div>
+
+            <h3>
+                Chamadas de Voz
+            </h3>
+
+            <p>
+                Áudio de alta qualidade sem travamentos.
+            </p>
+
+        </div>
+
+
+        <div class="resource-card">
+
+            <div class="resource-icon">
+                <img
+                    src="assets/compartilhamento_de_tela.png"
+                    alt="Compartilhamento de Tela"
+                >
+            </div>
+
+            <h3>
+                Compartilhamento de Tela
+            </h3>
+
+            <p>
+                Transmita sua tela com facilidade e segurança.
+            </p>
+
+        </div>
+
+
+        <div class="resource-card">
+
+            <div class="resource-icon">
+                <img
+                    src="assets/bots_e_integracoes.png"
+                    alt="Bots e Integrações"
+                >
+            </div>
+
+            <h3>
+                Bots e Integrações
+            </h3>
+
+            <p>
+                Adicione bots e personalize seu servidor.
+            </p>
+
+        </div>
+
+
+        <div class="resource-card">
+
+            <div class="resource-icon">
+                <img
+                    src="assets/canais_organizados.png"
+                    alt="Canais Organizados"
+                >
+            </div>
+
+            <h3>
+                Canais Organizados
+            </h3>
+
+            <p>
+                Mantenha tudo separado e organizado.
+            </p>
+
+        </div>
+
+
+        <div class="resource-card">
+
+            <div class="resource-icon">
+                <img
+                    src="assets/comunidades_ativas.png"
+                    alt="Comunidades Ativas"
+                >
+            </div>
+
+            <h3>
+                Comunidades Ativas
+            </h3>
+
+            <p>
+                Crie laços, faça amigos e participe.
+            </p>
+
+        </div>
+
+
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- ================= DOWNLOAD ================= -->
+<!-- =========================
+     DOWNLOAD
+========================= -->
 
 <section class="section download-section" id="download">
 
 <div class="container">
 
-<div class="section-label">
-    Download
-</div>
+    <div class="section-label">
+        Download
+    </div>
 
-<h2 class="section-title">
-    Baixe o <span class="gradient">VoxCord</span>
-</h2>
+    <h2 class="section-title">
+        Baixe o <span class="gradient">VoxCord</span>
+    </h2>
 
-<p class="section-description">
-    Escolha sua plataforma e comece agora.
-</p>
-
-
-<div class="platforms">
-
-<div class="platform">
-
-<div class="platform-icon">▣</div>
-
-<h3>Windows</h3>
-
-<p>Para Windows 7 ou superior.</p>
-
-<button onclick="openDownload()">
-    ↓ Baixar
-</button>
-
-</div>
+    <p class="section-description">
+        Escolha sua plataforma e comece agora mesmo a se conectar.
+    </p>
 
 
-<div class="platform soon">
-
-<div class="platform-icon">♟</div>
-
-<h3>Android</h3>
-
-<p>Em breve</p>
-
-<button>
-    Em breve
-</button>
-
-</div>
+    <div class="platforms">
 
 
-<div class="platform soon">
+        <!-- WINDOWS -->
 
-<div class="platform-icon">♟</div>
+        <div class="platform">
 
-<h3>Linux</h3>
+            <div class="platform-icon">
+                <img
+                    src="assets/windows.png"
+                    alt="Windows"
+                >
+            </div>
 
-<p>Em breve</p>
+            <h3>
+                Windows
+            </h3>
 
-<button>
-    Em breve
-</button>
+            <p>
+                Para Windows 7 ou superior.
+            </p>
 
-</div>
+            <button onclick="openDownload()">
+                ↓ &nbsp; Baixar
+            </button>
 
-</div>
+        </div>
 
 
-<div class="ios">
+        <!-- ANDROID -->
 
-<h3> &nbsp; Em breve para iOS</h3>
+        <div class="platform soon">
 
-<p>
-    Estamos trabalhando para trazer o VoxCord para iOS.
-    Fique ligado nas novidades!
-</p>
+            <div class="platform-icon">
+                <img
+                    src="assets/android.png"
+                    alt="Android"
+                >
+            </div>
 
-</div>
+            <h3>
+                Android
+            </h3>
+
+            <p>
+                Em breve
+            </p>
+
+            <button disabled>
+                Em breve
+            </button>
+
+        </div>
+
+
+        <!-- LINUX -->
+
+        <div class="platform soon">
+
+            <div class="platform-icon">
+                <img
+                    src="assets/linux.png"
+                    alt="Linux"
+                >
+            </div>
+
+            <h3>
+                Linux
+            </h3>
+
+            <p>
+                Em breve
+            </p>
+
+            <button disabled>
+                Em breve
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- IOS -->
+
+    <div class="ios">
+
+        <img
+            class="ios-icon"
+            src="assets/logo_voxcord.png"
+            alt=""
+        >
+
+        <h3>
+            Em breve para iOS
+        </h3>
+
+        <p>
+            Estamos trabalhando para trazer o VoxCord para iOS.
+            Fique ligado nas novidades!
+        </p>
+
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- ================= CONTATO ================= -->
+<!-- =========================
+     CONTATO
+========================= -->
 
 <section class="section contact" id="contato">
 
 <div class="container">
 
-<div class="section-label">
-    Contato
-</div>
+    <div class="section-label">
+        Contato
+    </div>
 
-<h2 class="section-title">
-    Fale comigo!
-</h2>
+    <h2 class="section-title">
+        Fale comigo!
+    </h2>
 
-<p class="section-description">
-    Tem dúvidas, sugestões ou quer conversar sobre o projeto?
-    Me chama em qualquer uma das redes abaixo!
-</p>
+    <p class="section-description">
+        Tem dúvidas, sugestões ou quer conversar sobre o projeto?
+        Me chama em qualquer uma das redes abaixo!
+    </p>
 
 
-<div class="contact-links">
+    <div class="contact-links">
 
-<a class="contact-card" href="#" onclick="contactAlert('Discord'); return false;">
-    <strong>Discord</strong>
-    <span>Lipee7xs</span>
-</a>
 
-<a class="contact-card" href="#" onclick="contactAlert('GitHub'); return false;">
-    <strong>GitHub</strong>
-    <span>@lipee7xs</span>
-</a>
+        <a
+            class="contact-card"
+            href="https://github.com/lipee7xs"
+            target="_blank"
+            rel="noopener"
+        >
 
-<a class="contact-card" href="#" onclick="contactAlert('Instagram'); return false;">
-    <strong>Instagram</strong>
-    <span>@lipee7xs</span>
-</a>
+            <strong>
+                GitHub
+            </strong>
 
-<a class="contact-card" href="mailto:contato@voxc0rd.app">
-    <strong>Email</strong>
-    <span>contato@voxc0rd.app</span>
-</a>
+            <span>
+                @lipee7xs
+            </span>
 
-</div>
+        </a>
+
+
+        <button
+            class="contact-card"
+            onclick="showContact('Discord')"
+        >
+
+            <strong>
+                Discord
+            </strong>
+
+            <span>
+                Lipee7xs
+            </span>
+
+        </button>
+
+
+        <button
+            class="contact-card"
+            onclick="showContact('Instagram')"
+        >
+
+            <strong>
+                Instagram
+            </strong>
+
+            <span>
+                @lipee7xs
+            </span>
+
+        </button>
+
+
+        <button
+            class="contact-card"
+            onclick="showContact('Email')"
+        >
+
+            <strong>
+                Email
+            </strong>
+
+            <span>
+                Contato
+            </span>
+
+        </button>
+
+
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
 <div class="footer-inner">
 
-<div class="footer-main">
 
-<a class="footer-logo" href="#inicio">
+    <div class="footer-main">
 
-<img
-    src="assets/logo_voxcord_com_nome.png"
-    alt="VoxCord"
->
+        <a
+            class="footer-logo"
+            href="#inicio"
+        >
 
-</a>
+            <img
+                src="assets/logo_voxcord_com_nome.png"
+                alt="VoxCord"
+            >
 
-<p>
-    Fale. Conecte. Viva o VoxCord.
-</p>
+        </a>
 
-<div class="copyright">
-    © 2026 VoxCord. Todos os direitos reservados.
-</div>
+        <p>
+            Fale. Conecte. Viva o VoxCord.
+        </p>
 
-</div>
+        <div class="copyright">
+            © 2026 VoxCord. Todos os direitos reservados.
+        </div>
 
-
-<div class="footer-column">
-
-<h4>Navegação</h4>
-
-<a href="#inicio">Início</a>
-<a href="#recursos">Recursos</a>
-<a href="#sobre">Sobre</a>
-<a href="#download">Download</a>
-<a href="#contato">Contato</a>
-
-</div>
+    </div>
 
 
-<div class="footer-column">
+    <div class="footer-column">
 
-<h4>Recursos</h4>
+        <h4>
+            Navegação
+        </h4>
 
-<a href="#recursos">Chats</a>
-<a href="#recursos">Voz</a>
-<a href="#recursos">Bots</a>
-<a href="#recursos">Integrações</a>
-<a href="#recursos">Segurança</a>
+        <a href="#inicio">
+            Início
+        </a>
 
-</div>
+        <a href="#recursos">
+            Recursos
+        </a>
+
+        <a href="#sobre">
+            Sobre
+        </a>
+
+        <a href="#download">
+            Download
+        </a>
+
+        <a href="#contato">
+            Contato
+        </a>
+
+    </div>
 
 
-<div class="footer-column">
+    <div class="footer-column">
 
-<h4>Suporte</h4>
+        <h4>
+            Recursos
+        </h4>
 
-<a href="#">FAQ</a>
-<a href="#">Ajuda</a>
-<a href="#">Política de Privacidade</a>
-<a href="#">Termos de Uso</a>
+        <a href="#recursos">
+            Chats
+        </a>
 
-</div>
+        <a href="#recursos">
+            Voz
+        </a>
+
+        <a href="#recursos">
+            Bots
+        </a>
+
+        <a href="#recursos">
+            Integrações
+        </a>
+
+        <a href="#recursos">
+            Segurança
+        </a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>
+            Suporte
+        </h4>
+
+        <a href="#contato">
+            Contato
+        </a>
+
+        <a href="#download">
+            Download
+        </a>
+
+        <a href="#sobre">
+            Sobre o VoxCord
+        </a>
+
+    </div>
+
 
 </div>
 
 </footer>
 
 
-<!-- ================= MODAL ================= -->
+<!-- =========================
+     MODAL DOWNLOAD
+========================= -->
 
-<div class="modal" id="downloadModal">
-
-<div class="modal-box">
-
-<img
-    src="assets/logo_voxcord.png"
-    alt="VoxCord"
+<div
+    class="modal"
+    id="downloadModal"
 >
 
-<h2>VoxCord para Windows</h2>
+    <div class="modal-box">
 
-<p>
-    O download ainda não está disponível porque
-    o VoxCord está em desenvolvimento.
-    <br><br>
-    Assim que a versão final estiver pronta,
-    o download será disponibilizado aqui.
-</p>
+        <img
+            src="assets/logo_voxcord.png"
+            alt="VoxCord"
+        >
 
-<button class="close-modal" onclick="closeDownload()">
-    Entendi
-</button>
+        <h2>
+            VoxCord para Windows
+        </h2>
+
+        <p>
+            O download ainda não está disponível porque o VoxCord
+            está em desenvolvimento.
+
+            <br><br>
+
+            Assim que a versão final estiver pronta,
+            o botão de download será atualizado.
+        </p>
+
+        <button
+            class="close-modal"
+            onclick="closeDownload()"
+        >
+            Entendi
+        </button>
+
+    </div>
 
 </div>
 
+
+<!-- =========================
+     MODAL CONTATO
+========================= -->
+
+<div
+    class="modal"
+    id="contactModal"
+>
+
+    <div class="modal-box">
+
+        <img
+            src="assets/logo_voxcord.png"
+            alt="VoxCord"
+        >
+
+        <h2 id="contactTitle">
+            Contato
+        </h2>
+
+        <p id="contactText">
+            Este contato ainda está sendo configurado.
+        </p>
+
+        <button
+            class="close-modal"
+            onclick="closeContact()"
+        >
+            Fechar
+        </button>
+
+    </div>
+
 </div>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script>
 
-/* =========================
-   DOWNLOAD
-========================= */
+function openDownload(){
 
-function openDownload() {
     document
         .getElementById("downloadModal")
-        .classList.add("active");
-}
+        .classList
+        .add("active");
 
-function closeDownload() {
-    document
-        .getElementById("downloadModal")
-        .classList.remove("active");
 }
 
 
-/* Fecha clicando fora */
+function closeDownload(){
+
+    document
+        .getElementById("downloadModal")
+        .classList
+        .remove("active");
+
+}
+
+
+function showContact(name){
+
+    document
+        .getElementById("contactTitle")
+        .textContent = name;
+
+    document
+        .getElementById("contactText")
+        .textContent =
+        name +
+        " ainda está sendo configurado. Em breve o acesso direto estará disponível aqui.";
+
+    document
+        .getElementById("contactModal")
+        .classList
+        .add("active");
+
+}
+
+
+function closeContact(){
+
+    document
+        .getElementById("contactModal")
+        .classList
+        .remove("active");
+
+}
+
 
 document
-    .getElementById("downloadModal")
-    .addEventListener("click", function(event) {
+    .querySelectorAll(".modal")
+    .forEach(modal => {
 
-        if (event.target === this) {
-            closeDownload();
-        }
+        modal.addEventListener("click", event => {
+
+            if(event.target === modal){
+
+                modal.classList.remove("active");
+
+            }
+
+        });
 
     });
 
 
-/* =========================
-   CONTATO
-========================= */
+document.addEventListener("keydown", event => {
 
-function contactAlert(name) {
+    if(event.key === "Escape"){
 
-    alert(
-        name +
-        " ainda não possui um link configurado.\n\n" +
-        "Em breve você poderá acessar diretamente por aqui."
-    );
-
-}
-
-
-/* =========================
-   ESC
-========================= */
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
         closeDownload();
+        closeContact();
+
     }
 
 });
 
 
-/* =========================
-   MENU ATIVO
-========================= */
+const sections =
+    document.querySelectorAll("section[id]");
 
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-links a");
+const navLinks =
+    document.querySelectorAll(".nav-links a");
 
-window.addEventListener("scroll", () => {
 
-    let current = "";
+function updateActiveNav(){
+
+    let current = "inicio";
 
     sections.forEach(section => {
 
-        const sectionTop = section.offsetTop - 150;
+        if(
+            window.scrollY >=
+            section.offsetTop - 180
+        ){
 
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute("id");
+            current = section.id;
+
         }
 
     });
+
 
     navLinks.forEach(link => {
 
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
-        }
+        link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + current
+        );
 
     });
 
-});
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateActiveNav
+);
+
+updateActiveNav();
 
 </script>
 
